@@ -6,7 +6,7 @@ declare global {
 export default class UMDFooterElement extends HTMLElement {
     _shadow: ShadowRoot;
     constructor();
-    static get observedAttributes(): never[];
+    static get observedAttributes(): string[];
     attributeChangedCallback(name: string, oldValue: string | null, newValue: string | null): void;
     connectedCallback(): void;
 }

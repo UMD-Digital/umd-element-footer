@@ -1,5 +1,4 @@
 {
-  "include": ["source"],
   "compilerOptions": {
     "strict": true,
     "module": "ESNext",
@@ -10,8 +9,9 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "removeComments": true,
     "forceConsistentCasingInFileNames": true,
     "rootDir": "source",
-    "outDir": "examples/"
+    "outDir": "examples"
   }
 }
