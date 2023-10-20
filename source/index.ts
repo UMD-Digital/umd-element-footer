@@ -18,6 +18,7 @@ const MAIN_CONTAINER = 'umd-footer-main-container';
 const MAIN_TOP_CONTAINER = 'umd-footer-main-top-container';
 const MAIN_BOTTOM_CONTAINER = 'umd-footer-main-bottom-container';
 const LOGO_CONTAINER = 'umd-footer-logo-container';
+const CONTACT_CONTAINER = 'umd-footer-contact-container';
 const SOCIAL_CONTAINER = 'umd-footer-social-container';
 const BACKGROUND_IMAGE_CONTAINER = 'umd-footer-background-image-container';
 const BACKGROUND_IMAGE_GRADIENT =
@@ -63,8 +64,24 @@ const componentStyles = `
     padding: ${spacing['5xl']} 0 ${spacing['2xl']} ;
   }
 
-  .${MAIN_TOP_CONTAINER} svg {
+  .${MAIN_TOP_CONTAINER} .umd-lock {
+    display: flex;
+  }
+
+  .${LOGO_CONTAINER} {
     max-width: 310px;
+  }
+
+  .${LOGO_CONTAINER} svg {
+    width: 100%;
+  }
+
+  .${CONTACT_CONTAINER} {
+    padding-left: ${spacing['2xl']};
+  }
+
+  .${CONTACT_CONTAINER} * {
+    color: ${colors.white};
   }
   
   .${SUB_LINKS_CONTAINER} {
@@ -183,6 +200,7 @@ const CreateMainLogoRow = () => {
     const logoLink = document.createElement('a');
     const logoElmement = document.createElement('div');
 
+    logoLink.classList.add(LOGO_CONTAINER);
     logoLink.setAttribute('href', 'https://umd.edu');
     logoLink.setAttribute('target', '_blank');
     logoLink.setAttribute('rel', 'noopener noreferrer');
@@ -193,7 +211,17 @@ const CreateMainLogoRow = () => {
     lock.appendChild(logoLink);
   };
 
+  const makeContact = () => {
+    const contactContainer = document.createElement('div');
+    const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
+
+    contactContainer.classList.add(CONTACT_CONTAINER);
+    contactContainer.appendChild(contactSlot);
+    lock.appendChild(contactContainer);
+  };
+
   makeLogo();
+  makeContact();
   container.appendChild(lock);
   return container;
 };

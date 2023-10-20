@@ -78,8 +78,11 @@ var LOGO = `<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x
 var ELEMENT_NAME = "umd-element-footer";
 var SLOT_SUB_LINKS_NAME = "sub-links";
 var SLOT_BACKGROUND_IMAGE_NAME = "background-image";
+var SLOT_CONTACT_NAME = "contact";
 var MAIN_CONTAINER = "umd-footer-main-container";
 var MAIN_TOP_CONTAINER = "umd-footer-main-top-container";
+var LOGO_CONTAINER = "umd-footer-logo-container";
+var CONTACT_CONTAINER = "umd-footer-contact-container";
 var BACKGROUND_IMAGE_CONTAINER = "umd-footer-background-image-container";
 var BACKGROUND_IMAGE_GRADIENT = "umd-footer-background-image-graident-container";
 var SUB_LINKS_CONTAINER = "umd-footer-sub-links-container";
@@ -118,8 +121,24 @@ var componentStyles = `
     padding: ${spacing["5xl"]} 0 ${spacing["2xl"]} ;
   }
 
-  .${MAIN_TOP_CONTAINER} svg {
+  .${MAIN_TOP_CONTAINER} .umd-lock {
+    display: flex;
+  }
+
+  .${LOGO_CONTAINER} {
     max-width: 310px;
+  }
+
+  .${LOGO_CONTAINER} svg {
+    width: 100%;
+  }
+
+  .${CONTACT_CONTAINER} {
+    padding-left: ${spacing["2xl"]};
+  }
+
+  .${CONTACT_CONTAINER} * {
+    color: ${colors.white};
   }
   
   .${SUB_LINKS_CONTAINER} {
@@ -168,6 +187,11 @@ var requiredSubLinks = [
     url: "https://www.umd.edu/web-accessibility"
   }
 ];
+var CreateSlot = /* @__PURE__ */ __name(({ type }) => {
+  const slot = document.createElement("slot");
+  slot.setAttribute("name", type);
+  return slot;
+}, "CreateSlot");
 var CreateSubLink = /* @__PURE__ */ __name(({ title, url }) => {
   const link = document.createElement("a");
   link.setAttribute("href", url);
@@ -204,6 +228,7 @@ var CreateMainLogoRow = /* @__PURE__ */ __name(() => {
   const makeLogo = /* @__PURE__ */ __name(() => {
     const logoLink = document.createElement("a");
     const logoElmement = document.createElement("div");
+    logoLink.classList.add(LOGO_CONTAINER);
     logoLink.setAttribute("href", "https://umd.edu");
     logoLink.setAttribute("target", "_blank");
     logoLink.setAttribute("rel", "noopener noreferrer");
@@ -211,7 +236,15 @@ var CreateMainLogoRow = /* @__PURE__ */ __name(() => {
     logoLink.appendChild(logoElmement);
     lock.appendChild(logoLink);
   }, "makeLogo");
+  const makeContact = /* @__PURE__ */ __name(() => {
+    const contactContainer = document.createElement("div");
+    const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
+    contactContainer.classList.add(CONTACT_CONTAINER);
+    contactContainer.appendChild(contactSlot);
+    lock.appendChild(contactContainer);
+  }, "makeContact");
   makeLogo();
+  makeContact();
   container.appendChild(lock);
   return container;
 }, "CreateMainLogoRow");
