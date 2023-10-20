@@ -6,7 +6,6 @@ declare global {
 
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { typography } from '@universityofmaryland/design-system-configuration/dist/configuration/common/typography';
 
 const ELEMENT_NAME = 'umd-element-footer';
 const SLOT_SUB_LINKS_NAME = 'sub-links';
