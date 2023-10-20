@@ -11,9 +11,6 @@
     <link rel="stylesheet" href="styles.css" />
 
     <style>
-      @import 'tailwindcss/base';
-      @import 'tailwindcss/components';
-      @import 'tailwindcss/utilities';
       @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap');
 
       * {
@@ -22,16 +19,8 @@
         box-sizing: border-box;
       }
 
-      & p {
-        margin-bottom: 20px;
-        color: theme(colors.red);
-      }
-
       .example {
         padding: 10vw 0;
-      }
-
-      #one {
       }
     </style>
   </head>
@@ -158,6 +147,9 @@
             >
           </div>
         </div>
+
+        <div slot="contact"></div>
+
         <!-- <img
           slot="background-image"
           src="option.jpg"
