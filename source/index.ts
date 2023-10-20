@@ -9,11 +9,18 @@ import { spacing } from '@universityofmaryland/design-system-configuration/dist/
 
 const ELEMENT_NAME = 'umd-element-footer';
 const SLOT_SUB_LINKS_NAME = 'sub-links';
+const SLOT_BACKGROUND_IMAGE_NAME = 'background-image';
 
+const MAIN_CONTAINER = 'umd-footer-main-container';
+const SOCIAL_CONTAINER = 'umd-footer-social-container';
+const LOGO_CONTAINER = 'umd-footer-logo-container';
+const BACKGROUND_IMAGE_CONTAINER = 'umd-footer-background-image-container';
+const BACKGROUND_IMAGE_GRADIENT =
+  'umd-footer-background-image-graident-container';
 const SUB_LINKS_CONTAINER = 'umd-footer-sub-links-container';
 
 const BREAKPOINTS = {
-  small: 320,
+  small: 280,
 };
 
 const componentStyles = `
@@ -23,10 +30,47 @@ const componentStyles = `
     text-wrap: pretty;
     container: umd-footer / inline-size;
   }
+
+  .${MAIN_CONTAINER} {
+
+  }
+
+  .${MAIN_CONTAINER}[type="visual"] .${BACKGROUND_IMAGE_CONTAINER}  {
+    padding-top: 100px;
+  }
+
+  .${BACKGROUND_IMAGE_CONTAINER} {
+    position: relative;
+  }
+
+  .${BACKGROUND_IMAGE_GRADIENT} {
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 500vw;
+    height: 100px;
+    background: linear-gradient( 180deg, rgba(255, 255, 255, 1) 0%, #e4edf9 100% );
+  }
   
   .${SUB_LINKS_CONTAINER} {
     padding: ${spacing.sm} 0;
     background-color: ${colors.gray.darker};
+  }
+
+  .${SUB_LINKS_CONTAINER} .umd-lock {
+    display: flex;
+  }
+
+  .${SUB_LINKS_CONTAINER} .umd-lock > *:not(:first-child) {
+    margin-left: ${spacing.sm};
+    padding-left: ${spacing.sm};
+    background-position: ${spacing.sm} 100%;
+    border-left: 1px solid ${colors.gray.dark};
+  }
+
+  .${SUB_LINKS_CONTAINER} .umd-lock p {
+    color: ${colors.white};
   }
   
   .${SUB_LINKS_CONTAINER} a {
@@ -43,13 +87,6 @@ const componentStyles = `
   .${SUB_LINKS_CONTAINER} a:hover,
   .${SUB_LINKS_CONTAINER} a:focus {
     background-size: 100% 1px;
-  }
-
-  .${SUB_LINKS_CONTAINER} a:not(:first-child) {
-    margin-left: ${spacing.sm};
-    padding-left: ${spacing.sm};
-    background-position: ${spacing.sm} 100%;
-    border-left: 1px solid ${colors.gray.dark};
   }
 `;
 
@@ -91,10 +128,11 @@ const CreateSubLink = ({ title, url }: { title: string; url: string }) => {
   return link;
 };
 
-const CreateShadowDomForLinks = ({ element }: { element: HTMLElement }) => {
+const CreateUtility = ({ element }: { element: HTMLElement }) => {
   const slot = element.querySelector(`[slot="${SLOT_SUB_LINKS_NAME}"]`);
   const container = document.createElement('div');
   const wrapper = document.createElement('div');
+  const copyRight = document.createElement('p');
 
   container.classList.add(SUB_LINKS_CONTAINER);
   wrapper.classList.add('umd-lock');
@@ -108,7 +146,77 @@ const CreateShadowDomForLinks = ({ element }: { element: HTMLElement }) => {
     slottedLinks.forEach((link) => wrapper.appendChild(link));
   }
   requiredSubLinks.forEach((link) => wrapper.appendChild(CreateSubLink(link)));
+  copyRight.classList.add('umd-sans-min');
+  copyRight.innerHTML = `©${new Date().getFullYear()} UNIVERSITY OF MARYLAND`;
+  wrapper.appendChild(copyRight);
   container.appendChild(wrapper);
+
+  return container;
+};
+
+const CreateSocialRow = () => {
+  const container = document.createElement('div');
+};
+
+const CreateMainLogoRow = () => {
+  const container = document.createElement('div');
+};
+
+const CreateLinksLogoRow = () => {
+  const container = document.createElement('div');
+};
+
+const CreateMain = ({
+  type,
+  element,
+}: {
+  type: string;
+  element: HTMLElement;
+}) => {
+  const container = document.createElement('div');
+
+  container.setAttribute('type', type);
+  container.classList.add(MAIN_CONTAINER);
+
+  if (type === 'visual') {
+    const slottedDate = element.querySelector(
+      `[slot="${SLOT_BACKGROUND_IMAGE_NAME}"]`,
+    ) as HTMLImageElement;
+    const visualContainer = document.createElement('div');
+    const backgroundGraident = document.createElement('div');
+    const backgroundImage = document.createElement('img');
+    let altText = 'The University of Maryland Campus';
+    let imageSrc = `./background.jpg`;
+
+    if (slottedDate) {
+      const source = slottedDate.getAttribute('src');
+      const alt = slottedDate.getAttribute('alt');
+
+      if (typeof source === 'string' && source.length > 0) {
+        imageSrc = source;
+      }
+
+      if (typeof alt === 'string' && alt.length > 0) {
+        altText = alt;
+      }
+    }
+
+    visualContainer.classList.add(BACKGROUND_IMAGE_CONTAINER);
+    backgroundImage.setAttribute('src', imageSrc);
+    backgroundImage.setAttribute('alt', `${altText}`);
+
+    backgroundGraident.classList.add(BACKGROUND_IMAGE_GRADIENT);
+
+    visualContainer.appendChild(backgroundGraident);
+    visualContainer.appendChild(backgroundImage);
+    container.appendChild(visualContainer);
+  }
+
+  if (type === 'mega') {
+  }
+
+  if (type === 'simple') {
+  }
 
   return container;
 };
@@ -125,6 +233,7 @@ const LoadTemplate = async () => {
 
 export default class UMDFooterElement extends HTMLElement {
   _shadow: ShadowRoot;
+  _type = 'simple';
 
   constructor() {
     super();
@@ -146,13 +255,19 @@ export default class UMDFooterElement extends HTMLElement {
     name: string,
     oldValue: string | null,
     newValue: string | null,
-  ) {}
+  ) {
+    if (name === 'type' && newValue && !oldValue) {
+      this._type = newValue;
+    }
+  }
 
   connectedCallback() {
     const element = this;
-    const subLinks = CreateShadowDomForLinks({ element });
+    const mainElement = CreateMain({ element, type: this._type });
+    const utilityElement = CreateUtility({ element });
 
-    this._shadow.appendChild(subLinks);
+    this._shadow.appendChild(mainElement);
+    this._shadow.appendChild(utilityElement);
   }
 }
 
