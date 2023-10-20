@@ -19,6 +19,60 @@ var colors = {
   }
 };
 
+// node_modules/@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js
+var spacing = {
+  min: "8px",
+  xs: "12px",
+  sm: "16px",
+  md: "24px",
+  lg: "32px",
+  xl: "40px",
+  "2xl": "48px",
+  "3xl": "56px",
+  "4xl": "64px",
+  "5xl": "72px",
+  "6xl": "80px",
+  "7xl": "96px",
+  "8xl": "104px",
+  max: "128px"
+};
+var screens = {
+  small: { min: "320px", max: "479px" },
+  medium: { min: "480px", max: "649px" },
+  large: { min: "650px", max: "767px" },
+  tablet: { min: "768px", max: "1023px" },
+  desktop: { min: "1024px", max: "1199px" },
+  highDef: { min: "1200px", max: "1499px" },
+  maximum: { min: "1500px" }
+};
+var queries = {
+  small: {
+    min: "min-width: ".concat(screens.small.min),
+    max: "max-width: ".concat(screens.small.max)
+  },
+  medium: {
+    min: "min-width: ".concat(screens.medium.min),
+    max: "max-width: ".concat(screens.medium.max)
+  },
+  large: {
+    min: "min-width: ".concat(screens.large.min),
+    max: "max-width: ".concat(screens.large.max)
+  },
+  tablet: {
+    min: "min-width: ".concat(screens.tablet.min),
+    max: "max-width: ".concat(screens.tablet.max)
+  },
+  desktop: {
+    min: "min-width: ".concat(screens.desktop.min),
+    max: "max-width: ".concat(screens.desktop.max)
+  },
+  highDef: {
+    min: "min-width: ".concat(screens.highDef.min),
+    max: "max-width: ".concat(screens.highDef.max)
+  },
+  maximum: { min: "min-width: ".concat(screens.maximum.min) }
+};
+
 // examples/index.js
 var ELEMENT_NAME = "umd-element-footer";
 var SLOT_SUB_LINKS_NAME = "sub-links";
@@ -32,12 +86,31 @@ var componentStyles = `
   }
   
   .${SUB_LINKS_CONTAINER} {
-    padding: 16px 0;
+    padding: ${spacing.sm} 0;
     background-color: ${colors.gray.darker};
   }
   
   .${SUB_LINKS_CONTAINER} a {
     color: ${colors.white};
+    background-image: linear-gradient(${colors.white}, ${colors.white});
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    display: inline;
+    position: relative;
+    transition: background-size .4s;
+  }
+
+  .${SUB_LINKS_CONTAINER} a:hover,
+  .${SUB_LINKS_CONTAINER} a:focus {
+    background-size: 100% 1px;
+  }
+
+  .${SUB_LINKS_CONTAINER} a:not(:first-child) {
+    margin-left: ${spacing.sm};
+    padding-left: ${spacing.sm};
+    background-position: ${spacing.sm} 100%;
+    border-left: 1px solid ${colors.gray.dark};
   }
 `;
 var requiredSubLinks = [
@@ -56,6 +129,7 @@ var CreateSubLink = /* @__PURE__ */ __name(({ title, url }) => {
   link.setAttribute("target", "_blank");
   link.setAttribute("rel", "noopener noreferrer");
   link.innerText = title;
+  link.classList.add("umd-sans-min");
   return link;
 }, "CreateSubLink");
 var CreateShadowDomForLinks = /* @__PURE__ */ __name(({ element }) => {
@@ -66,6 +140,7 @@ var CreateShadowDomForLinks = /* @__PURE__ */ __name(({ element }) => {
   wrapper.classList.add("umd-lock");
   if (slot) {
     const slottedLinks = Array.from(slot.querySelectorAll(`a`));
+    slottedLinks.forEach((link) => link.classList.add("umd-sans-min"));
     slottedLinks.forEach((link) => wrapper.appendChild(link));
   }
   requiredSubLinks.forEach((link) => wrapper.appendChild(CreateSubLink(link)));
@@ -86,11 +161,11 @@ var UMDFooterElement = class extends HTMLElement {
   constructor() {
     super();
     this._shadow = this.attachShadow({ mode: "open" });
-    const test = /* @__PURE__ */ __name(async () => {
+    const load = /* @__PURE__ */ __name(async () => {
       const template = await LoadTemplate();
       this._shadow.appendChild(template.content.cloneNode(true));
-    }, "test");
-    test();
+    }, "load");
+    load();
   }
   static get observedAttributes() {
     return ["type"];

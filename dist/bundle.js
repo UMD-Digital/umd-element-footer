@@ -56,6 +56,7 @@ var CreateSubLink = /* @__PURE__ */ __name(({ title, url }) => {
   link.setAttribute("target", "_blank");
   link.setAttribute("rel", "noopener noreferrer");
   link.innerText = title;
+  link.classList.add("umd-sans-min");
   return link;
 }, "CreateSubLink");
 var CreateShadowDomForLinks = /* @__PURE__ */ __name(({ element }) => {
@@ -66,6 +67,7 @@ var CreateShadowDomForLinks = /* @__PURE__ */ __name(({ element }) => {
   wrapper.classList.add("umd-lock");
   if (slot) {
     const slottedLinks = Array.from(slot.querySelectorAll(`a`));
+    slottedLinks.forEach((link) => link.classList.add("umd-sans-min"));
     slottedLinks.forEach((link) => wrapper.appendChild(link));
   }
   requiredSubLinks.forEach((link) => wrapper.appendChild(CreateSubLink(link)));
@@ -86,11 +88,11 @@ var UMDFooterElement = class extends HTMLElement {
   constructor() {
     super();
     this._shadow = this.attachShadow({ mode: "open" });
-    const test = /* @__PURE__ */ __name(async () => {
+    const load = /* @__PURE__ */ __name(async () => {
       const template = await LoadTemplate();
       this._shadow.appendChild(template.content.cloneNode(true));
-    }, "test");
-    test();
+    }, "load");
+    load();
   }
   static get observedAttributes() {
     return ["type"];

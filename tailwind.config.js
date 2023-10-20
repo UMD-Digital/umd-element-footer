@@ -5,16 +5,20 @@ import { colors } from '@universityofmaryland/design-system-configuration/dist/c
 import { typography } from '@universityofmaryland/design-system-configuration/dist/configuration/common/typography';
 import { umdLock } from '@universityofmaryland/design-system-configuration/dist/configuration/layout/umd-lock';
 
-const content = ['./source/**/*.{css,ts}'];
+const content = ['./source/*.{css,ts}'];
 
 const theme = {
   colors,
-  typography,
+};
+
+const components = {
+  ...typography,
+  ...umdLock,
 };
 
 const plugins = [
   plugin(function ({ addComponents }) {
-    addComponents(umdLock);
+    addComponents(components);
   }),
 ];
 

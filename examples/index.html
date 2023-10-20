@@ -8,7 +8,32 @@
     />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link rel="stylesheet" href="example.css" />
+    <link rel="stylesheet" href="styles.css" />
+
+    <style>
+      @import 'tailwindcss/base';
+      @import 'tailwindcss/components';
+      @import 'tailwindcss/utilities';
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;700&display=swap');
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      & p {
+        margin-bottom: 20px;
+        color: theme(colors.red);
+      }
+
+      .example {
+        padding: 10vw 0;
+      }
+
+      #one {
+      }
+    </style>
   </head>
 
   <body>

@@ -1,3 +1,81 @@
+.container {
+  width: 100%;
+}
+
+@media (min-width: 640px) {
+  .container {
+    max-width: 640px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 768px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1024px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1536px;
+  }
+}
+
+.umd-sans-extralarge {
+  font-family: 'Manrope', Helvetica, Arial, Verdana, sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  line-height: 1.1875em;
+}
+
+@media (max-width: 649px) {
+  .umd-sans-extralarge {
+    font-size: 18px;
+    line-height: 1.3333333333333333em;
+  }
+}
+
+.umd-sans-min {
+  font-family: 'Manrope', Helvetica, Arial, Verdana, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3333333333333333em;
+}
+
+.umd-lock {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+  max-width: 1296px;
+}
+
+@media (min-width: 768px) {
+  .umd-lock {
+    padding-left: 48px;
+    padding-right: 48px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .umd-lock {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
 /*
 ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com
 */
@@ -532,89 +610,4 @@ video {
   --tw-backdrop-opacity:  ;
   --tw-backdrop-saturate:  ;
   --tw-backdrop-sepia:  ;
-}
-
-.container {
-  width: 100%;
-}
-
-@media (min-width: 640px) {
-  .container {
-    max-width: 640px;
-  }
-}
-
-@media (min-width: 768px) {
-  .container {
-    max-width: 768px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .container {
-    max-width: 1024px;
-  }
-}
-
-@media (min-width: 1280px) {
-  .container {
-    max-width: 1280px;
-  }
-}
-
-@media (min-width: 1536px) {
-  .container {
-    max-width: 1536px;
-  }
-}
-
-.umd-lock {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 16px;
-  padding-right: 16px;
-  max-width: 1296px;
-}
-
-@media (min-width: 768px) {
-  .umd-lock {
-    padding-left: 48px;
-    padding-right: 48px;
-  }
-}
-
-@media (min-width: 1024px) {
-  .umd-lock {
-    padding-left: 64px;
-    padding-right: 64px;
-  }
-}
-
-.static {
-  position: static;
-}
-
-.relative {
-  position: relative;
-}
-
-.block {
-  display: block;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-.umd-lock {
-}
-
-.example {
-  padding: 10vw 0;
-}
-
-#one {
 }

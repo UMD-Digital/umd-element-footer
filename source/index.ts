@@ -5,6 +5,8 @@ declare global {
 }
 
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
+import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
+import { typography } from '@universityofmaryland/design-system-configuration/dist/configuration/common/typography';
 
 const ELEMENT_NAME = 'umd-element-footer';
 const SLOT_SUB_LINKS_NAME = 'sub-links';
@@ -24,12 +26,31 @@ const componentStyles = `
   }
   
   .${SUB_LINKS_CONTAINER} {
-    padding: 16px 0;
+    padding: ${spacing.sm} 0;
     background-color: ${colors.gray.darker};
   }
   
   .${SUB_LINKS_CONTAINER} a {
     color: ${colors.white};
+    background-image: linear-gradient(${colors.white}, ${colors.white});
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    display: inline;
+    position: relative;
+    transition: background-size .4s;
+  }
+
+  .${SUB_LINKS_CONTAINER} a:hover,
+  .${SUB_LINKS_CONTAINER} a:focus {
+    background-size: 100% 1px;
+  }
+
+  .${SUB_LINKS_CONTAINER} a:not(:first-child) {
+    margin-left: ${spacing.sm};
+    padding-left: ${spacing.sm};
+    background-position: ${spacing.sm} 100%;
+    border-left: 1px solid ${colors.gray.dark};
   }
 `;
 
@@ -67,6 +88,7 @@ const CreateSubLink = ({ title, url }: { title: string; url: string }) => {
   link.setAttribute('target', '_blank');
   link.setAttribute('rel', 'noopener noreferrer');
   link.innerText = title;
+  link.classList.add('umd-sans-min');
   return link;
 };
 
@@ -83,6 +105,7 @@ const CreateShadowDomForLinks = ({ element }: { element: HTMLElement }) => {
       slot.querySelectorAll(`a`),
     ) as HTMLAnchorElement[];
 
+    slottedLinks.forEach((link) => link.classList.add('umd-sans-min'));
     slottedLinks.forEach((link) => wrapper.appendChild(link));
   }
   requiredSubLinks.forEach((link) => wrapper.appendChild(CreateSubLink(link)));
@@ -108,12 +131,12 @@ export default class UMDFooterElement extends HTMLElement {
     super();
     this._shadow = this.attachShadow({ mode: 'open' });
 
-    const test = async () => {
+    const load = async () => {
       const template = await LoadTemplate();
       this._shadow.appendChild(template.content.cloneNode(true));
     };
 
-    test();
+    load();
   }
 
   static get observedAttributes() {

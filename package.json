@@ -14,12 +14,13 @@
     "clean": "rm -rf dist",
     "bundle:dist": "esbuild --watch --bundle examples/index.js --keep-names --outfile=dist/bundle.js --format=esm",
     "bundle:local": "esbuild --watch --bundle examples/index.js --keep-names --outfile=examples/bundle.js --format=esm",
-    "styles:dist": "tailwindcss -i ./source/dist.css -o ./dist/dist.css",
-    "styles:local": "tailwindcss -w -i ./source/example.css -o ./examples/example.css",
+    "styles:dist": "tailwindcss -w -i ./source/index.css -o ./dist/styles.css",
+    "styles:local": "tailwindcss -w -i ./source/index.css -o ./examples/styles.css",
     "build": "tsc -outDir examples & npm run styles:dist & npm run bundle:dist",
     "start": "tsc -w -outDir examples & npm run bundle:local & npm run styles:local"
   },
   "devDependencies": {
+    "esbuild": "^0.19.5",
     "postcss": "^8.4.21",
     "postcss-import": "^15.1.0",
     "postcss-preset-env": "^8.0.1",
@@ -27,7 +28,6 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@universityofmaryland/design-system-configuration": "^0.0.9",
-    "esbuild": "^0.19.5"
+    "@universityofmaryland/design-system-configuration": "^0.0.9"
   }
 }
