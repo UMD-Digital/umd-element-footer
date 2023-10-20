@@ -120,4 +120,3 @@ if (!window.customElements.get(ELEMENT_NAME)) {
     window.UMDFooterElement = UMDFooterElement;
     window.customElements.define(ELEMENT_NAME, UMDFooterElement);
 }
-//# sourceMappingURL=index.js.map
