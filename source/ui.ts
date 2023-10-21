@@ -49,6 +49,96 @@ const BREAKPOINTS = {
 
 // Styles
 
+const ElementStyles = `
+  .${ELEMENT_WRAPPER} p,
+  .${ELEMENT_WRAPPER} a {
+    color: ${colors.white};
+  }
+`;
+
+const MainContainerStyles = `
+  .${MAIN_CONTAINER} {
+  
+  }
+  
+  .${MAIN_TOP_CONTAINER} {
+    background-color: ${colors.black};
+    padding: ${spacing['5xl']} 0 ${spacing['2xl']} ;
+  }
+  
+  .${MAIN_TOP_CONTAINER_WRAPPER}  {
+    display: flex;
+  }
+  
+  .${LOGO_CONTAINER} {
+    max-width: 310px;
+    align-self: flex-start;
+  }
+  
+  .${LOGO_CONTAINER} svg {
+    width: 100%;
+  }
+  
+  .${CONTACT_CONTAINER} {
+    padding-left: ${spacing['2xl']};
+  }
+  
+  .${CONTACT_CONTAINER} * {
+    color: ${colors.white};
+  }
+
+  .${SOCIAL_CONTAINER} {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: flex-start;
+    padding-left: ${spacing['2xl']};
+  }
+
+  .${SOCIAL_COLUMN_WRAPPER} > a {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: ${spacing.lg};
+    max-width: 250px;
+    margin-left: auto;
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER} {
+    display: grid;
+    grid-gap: ${spacing.xs};
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: ${spacing.xs};
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER}[count="4"] {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER} a {
+    background-color: ${colors.gray.darker};
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER} a > *,
+  .${SOCIAL_CONTAINER_WRAPPER} a path {
+    max-height: 20px !important;
+    fill: ${colors.white} !important;
+  }
+`;
+
+const LinksRowStyles = `
+  .${MAIN_BOTTOM_CONTAINER} {
+    padding: ${spacing['2xl']} 0;
+    background-color: ${colors.black};
+  }
+`;
+
 const SubLinkStyles = `
   .${UTILITY_CONTAINER} {
     padding: ${spacing.sm} 0;
@@ -84,84 +174,6 @@ const SubLinkStyles = `
   .${UTILITY_CONTAINER} a:hover,
   .${UTILITY_CONTAINER} a:focus {
     background-size: 100% 1px;
-  }
-`;
-
-const MainContainerStyles = `
-  .${MAIN_CONTAINER} {
-  
-  }
-  
-  .${MAIN_TOP_CONTAINER} {
-    background-color: ${colors.black};
-    padding: ${spacing['5xl']} 0 ${spacing['2xl']} ;
-  }
-
-  .${MAIN_TOP_CONTAINER} p,
-  .${MAIN_TOP_CONTAINER} a {
-    color: ${colors.white};
-  }
-  
-  .${MAIN_TOP_CONTAINER_WRAPPER}  {
-    display: flex;
-  }
-  
-  .${LOGO_CONTAINER} {
-    max-width: 310px;
-    align-self: flex-start;
-  }
-  
-  .${LOGO_CONTAINER} svg {
-    width: 100%;
-  }
-  
-  .${CONTACT_CONTAINER} {
-    padding-left: ${spacing['2xl']};
-  }
-  
-  .${CONTACT_CONTAINER} * {
-    color: ${colors.white};
-  }
-
-  .${SOCIAL_CONTAINER} {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    align-self: flex-start;
-    padding-left: ${spacing['2xl']};
-  }
-
-  .${SOCIAL_COLUMN_WRAPPER} > a {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: ${spacing.lg};
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER} {
-    display: grid;
-    grid-gap: ${spacing.xs};
-    grid-template-columns: repeat(3, 1fr);
-    margin-left: ${spacing.xs};
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER}[count="4"] {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER} a {
-    background-color: ${colors.gray.darker};
-    height: 32px;
-    width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER} a > *,
-  .${SOCIAL_CONTAINER_WRAPPER} a path {
-    max-height: 20px !important;
-    fill: ${colors.white} !important;
   }
 `;
 
@@ -201,6 +213,10 @@ const LightThemeStyles = `
     background-color: ${colors.gray.lightest};
   }
 
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${MAIN_BOTTOM_CONTAINER} {
+    background-color: ${colors.gray.lightest};
+  }
+
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} {
     background-color: ${colors.gray.light};
   }
@@ -223,7 +239,9 @@ export const ComponentStyles = `
     container: umd-footer / inline-size;
   }
 
+  ${ElementStyles}
   ${MainContainerStyles}
+  ${LinksRowStyles}
   ${VariationVisualStyles}
   ${SubLinkStyles}
   ${LightThemeStyles}
@@ -315,8 +333,20 @@ export const CreateUtility = ({ element }: { element: HTMLElement }) => {
 
 // Main Row
 
-const CreateLinksLogoRow = () => {
+const CreateLinksLogoRow = ({ element }: { element: HTMLElement }) => {
   const container = document.createElement('div');
+  const lock = document.createElement('div');
+  const wrapper = document.createElement('div');
+  const socialColumnWrapper = CreateSocialCampaignColumns({ element });
+
+  lock.classList.add('umd-lock');
+  container.classList.add(MAIN_BOTTOM_CONTAINER);
+
+  lock.appendChild(socialColumnWrapper);
+  wrapper.appendChild(lock);
+  container.appendChild(wrapper);
+
+  return container;
 };
 
 const CreateCamaignRow = () => {
@@ -388,6 +418,19 @@ const CreateSocialRow = ({ element }: { element: HTMLElement }) => {
   return container;
 };
 
+const CreateSocialCampaignColumns = ({ element }: { element: HTMLElement }) => {
+  const socialColumnWrapper = document.createElement('div');
+  const socialContainer = CreateSocialRow({ element });
+  const campaignContainer = CreateCamaignRow();
+
+  socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
+
+  socialColumnWrapper.appendChild(socialContainer);
+  socialColumnWrapper.appendChild(campaignContainer);
+
+  return socialColumnWrapper;
+};
+
 const CreateMainLogoRow = ({
   type,
   theme,
@@ -434,14 +477,7 @@ const CreateMainLogoRow = ({
     const includeSocial = type === VERSION_TYPE_SIMPLE;
 
     if (includeSocial) {
-      const socialColumnWrapper = document.createElement('div');
-      const socialContainer = CreateSocialRow({ element });
-      const campaignContainer = CreateCamaignRow();
-
-      socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
-
-      socialColumnWrapper.appendChild(socialContainer);
-      socialColumnWrapper.appendChild(campaignContainer);
+      const socialColumnWrapper = CreateSocialCampaignColumns({ element });
       wrapper.appendChild(socialColumnWrapper);
     }
   };
@@ -503,13 +539,13 @@ export const CreateMain = ({
     container.appendChild(visualContainer);
   }
 
-  if (type === VERSION_TYPE_MEGA) {
-  }
-
-  if (type === VERSION_TYPE_SIMPLE) {
-  }
-
   container.appendChild(logoRow);
+
+  if (type === VERSION_TYPE_MEGA || type === VERSION_TYPE_VISUAL) {
+    const linksRow = CreateLinksLogoRow({ element });
+
+    container.appendChild(linksRow);
+  }
 
   return container;
 };

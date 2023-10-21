@@ -91,6 +91,7 @@ var SLOT_SOCIAL_NAME = "social-links";
 var ELEMENT_WRAPPER = "umd-footer-element-wrapper";
 var MAIN_CONTAINER = "umd-footer-main-container";
 var MAIN_TOP_CONTAINER = "umd-footer-main-top-container";
+var MAIN_BOTTOM_CONTAINER = "umd-footer-main-bottom-container";
 var MAIN_TOP_CONTAINER_WRAPPER = "umd-footer-main-top-container-wrapper";
 var LOGO_CONTAINER = "umd-footer-logo-container";
 var CONTACT_CONTAINER = "umd-footer-contact-container";
@@ -110,6 +111,93 @@ var VERSION_TYPES = [
   VERSION_TYPE_MEGA,
   VERSION_TYPE_VISUAL
 ];
+var ElementStyles = `
+  .${ELEMENT_WRAPPER} p,
+  .${ELEMENT_WRAPPER} a {
+    color: ${colors.white};
+  }
+`;
+var MainContainerStyles = `
+  .${MAIN_CONTAINER} {
+  
+  }
+  
+  .${MAIN_TOP_CONTAINER} {
+    background-color: ${colors.black};
+    padding: ${spacing["5xl"]} 0 ${spacing["2xl"]} ;
+  }
+  
+  .${MAIN_TOP_CONTAINER_WRAPPER}  {
+    display: flex;
+  }
+  
+  .${LOGO_CONTAINER} {
+    max-width: 310px;
+    align-self: flex-start;
+  }
+  
+  .${LOGO_CONTAINER} svg {
+    width: 100%;
+  }
+  
+  .${CONTACT_CONTAINER} {
+    padding-left: ${spacing["2xl"]};
+  }
+  
+  .${CONTACT_CONTAINER} * {
+    color: ${colors.white};
+  }
+
+  .${SOCIAL_CONTAINER} {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    align-self: flex-start;
+    padding-left: ${spacing["2xl"]};
+  }
+
+  .${SOCIAL_COLUMN_WRAPPER} > a {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: ${spacing.lg};
+    max-width: 250px;
+    margin-left: auto;
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER} {
+    display: grid;
+    grid-gap: ${spacing.xs};
+    grid-template-columns: repeat(3, 1fr);
+    margin-left: ${spacing.xs};
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER}[count="4"] {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER} a {
+    background-color: ${colors.gray.darker};
+    height: 32px;
+    width: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .${SOCIAL_CONTAINER_WRAPPER} a > *,
+  .${SOCIAL_CONTAINER_WRAPPER} a path {
+    max-height: 20px !important;
+    fill: ${colors.white} !important;
+  }
+`;
+var LinksRowStyles = `
+  .${MAIN_BOTTOM_CONTAINER} {
+    padding: ${spacing["2xl"]} 0;
+    background-color: ${colors.black};
+  }
+`;
 var SubLinkStyles = `
   .${UTILITY_CONTAINER} {
     padding: ${spacing.sm} 0;
@@ -147,83 +235,6 @@ var SubLinkStyles = `
     background-size: 100% 1px;
   }
 `;
-var MainContainerStyles = `
-  .${MAIN_CONTAINER} {
-  
-  }
-  
-  .${MAIN_TOP_CONTAINER} {
-    background-color: ${colors.black};
-    padding: ${spacing["5xl"]} 0 ${spacing["2xl"]} ;
-  }
-
-  .${MAIN_TOP_CONTAINER} p,
-  .${MAIN_TOP_CONTAINER} a {
-    color: ${colors.white};
-  }
-  
-  .${MAIN_TOP_CONTAINER_WRAPPER}  {
-    display: flex;
-  }
-  
-  .${LOGO_CONTAINER} {
-    max-width: 310px;
-    align-self: flex-start;
-  }
-  
-  .${LOGO_CONTAINER} svg {
-    width: 100%;
-  }
-  
-  .${CONTACT_CONTAINER} {
-    padding-left: ${spacing["2xl"]};
-  }
-  
-  .${CONTACT_CONTAINER} * {
-    color: ${colors.white};
-  }
-
-  .${SOCIAL_CONTAINER} {
-    margin-left: auto;
-    display: flex;
-    align-items: center;
-    align-self: flex-start;
-    padding-left: ${spacing["2xl"]};
-  }
-
-  .${SOCIAL_COLUMN_WRAPPER} > a {
-    display: flex;
-    justify-content: flex-end;
-    margin-top: ${spacing.lg};
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER} {
-    display: grid;
-    grid-gap: ${spacing.xs};
-    grid-template-columns: repeat(3, 1fr);
-    margin-left: ${spacing.xs};
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER}[count="4"] {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER} a {
-    background-color: ${colors.gray.darker};
-    height: 32px;
-    width: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  .${SOCIAL_CONTAINER_WRAPPER} a > *,
-  .${SOCIAL_CONTAINER_WRAPPER} a path {
-    max-height: 20px !important;
-    fill: ${colors.white} !important;
-  }
-`;
 var VariationVisualStyles = `
   .${ELEMENT_WRAPPER}[type="${VERSION_TYPE_VISUAL}"] .${BACKGROUND_IMAGE_CONTAINER}  {
     padding-top: 100px;
@@ -259,6 +270,10 @@ var LightThemeStyles = `
     background-color: ${colors.gray.lightest};
   }
 
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${MAIN_BOTTOM_CONTAINER} {
+    background-color: ${colors.gray.lightest};
+  }
+
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} {
     background-color: ${colors.gray.light};
   }
@@ -280,7 +295,9 @@ var ComponentStyles = `
     container: umd-footer / inline-size;
   }
 
+  ${ElementStyles}
   ${MainContainerStyles}
+  ${LinksRowStyles}
   ${VariationVisualStyles}
   ${SubLinkStyles}
   ${LightThemeStyles}
@@ -349,6 +366,18 @@ var CreateUtility = /* @__PURE__ */ __name(({ element }) => {
   container.appendChild(wrapper);
   return container;
 }, "CreateUtility");
+var CreateLinksLogoRow = /* @__PURE__ */ __name(({ element }) => {
+  const container = document.createElement("div");
+  const lock = document.createElement("div");
+  const wrapper = document.createElement("div");
+  const socialColumnWrapper = CreateSocialCampaignColumns({ element });
+  lock.classList.add("umd-lock");
+  container.classList.add(MAIN_BOTTOM_CONTAINER);
+  lock.appendChild(socialColumnWrapper);
+  wrapper.appendChild(lock);
+  container.appendChild(wrapper);
+  return container;
+}, "CreateLinksLogoRow");
 var CreateCamaignRow = /* @__PURE__ */ __name(() => {
   const container = document.createElement("a");
   container.href = "https://fearlesslyforward.umd.edu";
@@ -394,6 +423,15 @@ var CreateSocialRow = /* @__PURE__ */ __name(({ element }) => {
   container.appendChild(linksWrapper);
   return container;
 }, "CreateSocialRow");
+var CreateSocialCampaignColumns = /* @__PURE__ */ __name(({ element }) => {
+  const socialColumnWrapper = document.createElement("div");
+  const socialContainer = CreateSocialRow({ element });
+  const campaignContainer = CreateCamaignRow();
+  socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
+  socialColumnWrapper.appendChild(socialContainer);
+  socialColumnWrapper.appendChild(campaignContainer);
+  return socialColumnWrapper;
+}, "CreateSocialCampaignColumns");
 var CreateMainLogoRow = /* @__PURE__ */ __name(({ type, theme, element }) => {
   const container = document.createElement("div");
   const lock = document.createElement("div");
@@ -422,12 +460,7 @@ var CreateMainLogoRow = /* @__PURE__ */ __name(({ type, theme, element }) => {
   const makeThirdColumn = /* @__PURE__ */ __name(() => {
     const includeSocial = type === VERSION_TYPE_SIMPLE;
     if (includeSocial) {
-      const socialColumnWrapper = document.createElement("div");
-      const socialContainer = CreateSocialRow({ element });
-      const campaignContainer = CreateCamaignRow();
-      socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
-      socialColumnWrapper.appendChild(socialContainer);
-      socialColumnWrapper.appendChild(campaignContainer);
+      const socialColumnWrapper = CreateSocialCampaignColumns({ element });
       wrapper.appendChild(socialColumnWrapper);
     }
   }, "makeThirdColumn");
@@ -467,11 +500,11 @@ var CreateMain = /* @__PURE__ */ __name(({ type, theme, element }) => {
     visualContainer.appendChild(backgroundImage);
     container.appendChild(visualContainer);
   }
-  if (type === VERSION_TYPE_MEGA) {
-  }
-  if (type === VERSION_TYPE_SIMPLE) {
-  }
   container.appendChild(logoRow);
+  if (type === VERSION_TYPE_MEGA || type === VERSION_TYPE_VISUAL) {
+    const linksRow = CreateLinksLogoRow({ element });
+    container.appendChild(linksRow);
+  }
   return container;
 }, "CreateMain");
 
