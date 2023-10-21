@@ -39,6 +39,13 @@
   line-height: 1.3333333333333333em;
 }
 
+.umd-interactive-sans-medium {
+  font-family: 'Manrope', Helvetica, Arial, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 1.25em;
+}
+
 .umd-lock {
   display: block;
   margin-left: auto;
