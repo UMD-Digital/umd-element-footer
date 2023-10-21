@@ -1,6 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { DARK_LOGO, LIGHT_LOGO, FACEBOOK_ICON, X_ICON, INSTAGRAM_ICON, YOUTUBE_ICON, TWITTER_ICON, } from './svgs';
+import { DARK_LOGO, LIGHT_LOGO, CAMPAIGN_LOGO, FACEBOOK_ICON, X_ICON, INSTAGRAM_ICON, YOUTUBE_ICON, TWITTER_ICON, } from './svgs';
 const SLOT_SUB_LINKS_NAME = 'sub-links';
 const SLOT_BACKGROUND_IMAGE_NAME = 'background-image';
 const SLOT_CONTACT_NAME = 'contact';
@@ -14,6 +14,7 @@ const LOGO_CONTAINER = 'umd-footer-logo-container';
 const CONTACT_CONTAINER = 'umd-footer-contact-container';
 const SOCIAL_CONTAINER = 'umd-footer-social-container';
 const SOCIAL_CONTAINER_WRAPPER = 'umd-footer-social-container_wrapper';
+const SOCIAL_COLUMN_WRAPPER = 'umd-footer-social-column_wrapper';
 const BACKGROUND_IMAGE_CONTAINER = 'umd-footer-background-image-container';
 const BACKGROUND_IMAGE_GRADIENT = 'umd-footer-background-image-graident-container';
 const UTILITY_CONTAINER = 'umd-footer-utility-container';
@@ -109,6 +110,12 @@ const MainContainerStyles = `
     align-items: center;
     align-self: flex-start;
     padding-left: ${spacing['2xl']};
+  }
+
+  .${SOCIAL_COLUMN_WRAPPER} > a {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: ${spacing.lg};
   }
 
   .${SOCIAL_CONTAINER_WRAPPER} {
@@ -266,6 +273,14 @@ export const CreateUtility = ({ element }) => {
 const CreateLinksLogoRow = () => {
     const container = document.createElement('div');
 };
+const CreateCamaignRow = () => {
+    const container = document.createElement('a');
+    container.href = 'https://fearlesslyforward.umd.edu';
+    container.setAttribute('target', '_blank');
+    container.setAttribute('rel', 'noopener noreferrer');
+    container.innerHTML = CAMPAIGN_LOGO;
+    return container;
+};
 const CreateSocialRow = ({ element }) => {
     const socialLinks = Array.from(element.querySelectorAll(`[slot="${SLOT_SOCIAL_NAME}"] a`));
     const container = document.createElement('div');
@@ -332,9 +347,13 @@ const CreateMainLogoRow = ({ type, theme, element, }) => {
     const makeThirdColumn = () => {
         const includeSocial = type === VERSION_TYPE_SIMPLE;
         if (includeSocial) {
+            const socialColumnWrapper = document.createElement('div');
             const socialContainer = CreateSocialRow({ element });
-            if (socialContainer)
-                wrapper.appendChild(socialContainer);
+            const campaignContainer = CreateCamaignRow();
+            socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
+            socialColumnWrapper.appendChild(socialContainer);
+            socialColumnWrapper.appendChild(campaignContainer);
+            wrapper.appendChild(socialColumnWrapper);
         }
     };
     makeLogo();

@@ -3,6 +3,7 @@ import { spacing } from '@universityofmaryland/design-system-configuration/dist/
 import {
   DARK_LOGO,
   LIGHT_LOGO,
+  CAMPAIGN_LOGO,
   FACEBOOK_ICON,
   X_ICON,
   INSTAGRAM_ICON,
@@ -24,6 +25,7 @@ const LOGO_CONTAINER = 'umd-footer-logo-container';
 const CONTACT_CONTAINER = 'umd-footer-contact-container';
 const SOCIAL_CONTAINER = 'umd-footer-social-container';
 const SOCIAL_CONTAINER_WRAPPER = 'umd-footer-social-container_wrapper';
+const SOCIAL_COLUMN_WRAPPER = 'umd-footer-social-column_wrapper';
 const BACKGROUND_IMAGE_CONTAINER = 'umd-footer-background-image-container';
 const BACKGROUND_IMAGE_GRADIENT =
   'umd-footer-background-image-graident-container';
@@ -127,6 +129,12 @@ const MainContainerStyles = `
     align-items: center;
     align-self: flex-start;
     padding-left: ${spacing['2xl']};
+  }
+
+  .${SOCIAL_COLUMN_WRAPPER} > a {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: ${spacing.lg};
   }
 
   .${SOCIAL_CONTAINER_WRAPPER} {
@@ -311,6 +319,17 @@ const CreateLinksLogoRow = () => {
   const container = document.createElement('div');
 };
 
+const CreateCamaignRow = () => {
+  const container = document.createElement('a');
+  container.href = 'https://fearlesslyforward.umd.edu';
+  container.setAttribute('target', '_blank');
+  container.setAttribute('rel', 'noopener noreferrer');
+
+  container.innerHTML = CAMPAIGN_LOGO;
+
+  return container;
+};
+
 const CreateSocialRow = ({ element }: { element: HTMLElement }) => {
   const socialLinks = Array.from(
     element.querySelectorAll(`[slot="${SLOT_SOCIAL_NAME}"] a`),
@@ -415,9 +434,15 @@ const CreateMainLogoRow = ({
     const includeSocial = type === VERSION_TYPE_SIMPLE;
 
     if (includeSocial) {
+      const socialColumnWrapper = document.createElement('div');
       const socialContainer = CreateSocialRow({ element });
+      const campaignContainer = CreateCamaignRow();
 
-      if (socialContainer) wrapper.appendChild(socialContainer);
+      socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
+
+      socialColumnWrapper.appendChild(socialContainer);
+      socialColumnWrapper.appendChild(campaignContainer);
+      wrapper.appendChild(socialColumnWrapper);
     }
   };
 
