@@ -27,6 +27,9 @@ export const VERSION_TYPES = [
     VERSION_TYPE_MEGA,
     VERSION_TYPE_VISUAL,
 ];
+const BREAKPOINTS = {
+    small: 280,
+};
 const SubLinkStyles = `
   .${UTILITY_CONTAINER} {
     padding: ${spacing.sm} 0;
@@ -222,15 +225,6 @@ const GetSocialIcon = ({ link }) => {
     }
     return link;
 };
-const CreateSubLink = ({ title, url }) => {
-    const link = document.createElement('a');
-    link.setAttribute('href', url);
-    link.setAttribute('target', '_blank');
-    link.setAttribute('rel', 'noopener noreferrer');
-    link.innerText = title;
-    link.classList.add('umd-sans-min');
-    return link;
-};
 export const CreateUtility = ({ element }) => {
     const slot = element.querySelector(`[slot="${SLOT_SUB_LINKS_NAME}"]`);
     const container = document.createElement('div');
@@ -246,6 +240,15 @@ export const CreateUtility = ({ element }) => {
             url: 'https://www.umd.edu/web-accessibility',
         },
     ];
+    const createSubLink = ({ title, url }) => {
+        const link = document.createElement('a');
+        link.setAttribute('href', url);
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+        link.innerText = title;
+        link.classList.add('umd-sans-min');
+        return link;
+    };
     container.classList.add(UTILITY_CONTAINER);
     wrapper.classList.add('umd-lock');
     if (slot) {
@@ -253,7 +256,7 @@ export const CreateUtility = ({ element }) => {
         slottedLinks.forEach((link) => link.classList.add('umd-sans-min'));
         slottedLinks.forEach((link) => wrapper.appendChild(link));
     }
-    requiredSubLinks.forEach((link) => wrapper.appendChild(CreateSubLink(link)));
+    requiredSubLinks.forEach((link) => wrapper.appendChild(createSubLink(link)));
     copyRight.classList.add('umd-sans-min');
     copyRight.innerHTML = `©${new Date().getFullYear()} UNIVERSITY OF MARYLAND`;
     wrapper.appendChild(copyRight);
@@ -268,8 +271,28 @@ const CreateSocialRow = ({ element }) => {
     const container = document.createElement('div');
     const linksWrapper = document.createElement('div');
     const headline = document.createElement('p');
-    if (socialLinks.length === 0)
-        return null;
+    if (socialLinks.length === 0) {
+        const socialLink = ({ url, label }) => {
+            const link = document.createElement('a');
+            link.setAttribute('href', url);
+            link.setAttribute('target', '_blank');
+            link.setAttribute('rel', 'noopener noreferrer');
+            link.setAttribute('aria-label', label);
+            return link;
+        };
+        socialLinks.push(socialLink({
+            url: 'https://www.youtube.com/user/UMD2101',
+            label: 'Link to the youtube channel for the University of Maryland',
+        }));
+        socialLinks.push(socialLink({
+            url: 'https://www.facebook.com/UnivofMaryland',
+            label: 'Link to the facebook page for the University of Maryland',
+        }));
+        socialLinks.push(socialLink({
+            url: 'https://www.instagram.com/univofmaryland',
+            label: 'Link to the instagram page for the University of Maryland',
+        }));
+    }
     socialLinks.forEach((link) => linksWrapper.appendChild(GetSocialIcon({ link })));
     container.classList.add(SOCIAL_CONTAINER);
     linksWrapper.classList.add(SOCIAL_CONTAINER_WRAPPER);

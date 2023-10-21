@@ -303,15 +303,6 @@ var GetSocialIcon = /* @__PURE__ */ __name(({ link }) => {
   }
   return link;
 }, "GetSocialIcon");
-var CreateSubLink = /* @__PURE__ */ __name(({ title, url }) => {
-  const link = document.createElement("a");
-  link.setAttribute("href", url);
-  link.setAttribute("target", "_blank");
-  link.setAttribute("rel", "noopener noreferrer");
-  link.innerText = title;
-  link.classList.add("umd-sans-min");
-  return link;
-}, "CreateSubLink");
 var CreateUtility = /* @__PURE__ */ __name(({ element }) => {
   const slot = element.querySelector(`[slot="${SLOT_SUB_LINKS_NAME}"]`);
   const container = document.createElement("div");
@@ -327,6 +318,15 @@ var CreateUtility = /* @__PURE__ */ __name(({ element }) => {
       url: "https://www.umd.edu/web-accessibility"
     }
   ];
+  const createSubLink = /* @__PURE__ */ __name(({ title, url }) => {
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("target", "_blank");
+    link.setAttribute("rel", "noopener noreferrer");
+    link.innerText = title;
+    link.classList.add("umd-sans-min");
+    return link;
+  }, "createSubLink");
   container.classList.add(UTILITY_CONTAINER);
   wrapper.classList.add("umd-lock");
   if (slot) {
@@ -334,7 +334,7 @@ var CreateUtility = /* @__PURE__ */ __name(({ element }) => {
     slottedLinks.forEach((link) => link.classList.add("umd-sans-min"));
     slottedLinks.forEach((link) => wrapper.appendChild(link));
   }
-  requiredSubLinks.forEach((link) => wrapper.appendChild(CreateSubLink(link)));
+  requiredSubLinks.forEach((link) => wrapper.appendChild(createSubLink(link)));
   copyRight.classList.add("umd-sans-min");
   copyRight.innerHTML = `\xA9${(/* @__PURE__ */ new Date()).getFullYear()} UNIVERSITY OF MARYLAND`;
   wrapper.appendChild(copyRight);
@@ -346,8 +346,28 @@ var CreateSocialRow = /* @__PURE__ */ __name(({ element }) => {
   const container = document.createElement("div");
   const linksWrapper = document.createElement("div");
   const headline = document.createElement("p");
-  if (socialLinks.length === 0)
-    return null;
+  if (socialLinks.length === 0) {
+    const socialLink = /* @__PURE__ */ __name(({ url, label }) => {
+      const link = document.createElement("a");
+      link.setAttribute("href", url);
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+      link.setAttribute("aria-label", label);
+      return link;
+    }, "socialLink");
+    socialLinks.push(socialLink({
+      url: "https://www.youtube.com/user/UMD2101",
+      label: "Link to the youtube channel for the University of Maryland"
+    }));
+    socialLinks.push(socialLink({
+      url: "https://www.facebook.com/UnivofMaryland",
+      label: "Link to the facebook page for the University of Maryland"
+    }));
+    socialLinks.push(socialLink({
+      url: "https://www.instagram.com/univofmaryland",
+      label: "Link to the instagram page for the University of Maryland"
+    }));
+  }
   socialLinks.forEach((link) => linksWrapper.appendChild(GetSocialIcon({ link })));
   container.classList.add(SOCIAL_CONTAINER);
   linksWrapper.classList.add(SOCIAL_CONTAINER_WRAPPER);

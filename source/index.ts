@@ -16,10 +16,6 @@ declare global {
 
 const ELEMENT_NAME = 'umd-element-footer';
 
-const BREAKPOINTS = {
-  small: 280,
-};
-
 // Functions
 
 const Debounce = <T extends Function>(cb: T, wait = 50) => {
