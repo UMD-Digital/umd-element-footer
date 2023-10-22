@@ -95,6 +95,7 @@ var MAIN_BOTTOM_CONTAINER = "umd-footer-main-bottom-container";
 var MAIN_TOP_CONTAINER_WRAPPER = "umd-footer-main-top-container-wrapper";
 var LOGO_CONTAINER = "umd-footer-logo-container";
 var CONTACT_CONTAINER = "umd-footer-contact-container";
+var CONTACT_LIST_CONTAINER = "umd-footer-contact-contact-list";
 var SOCIAL_CONTAINER = "umd-footer-social-container";
 var SOCIAL_CONTAINER_WRAPPER = "umd-footer-social-container_wrapper";
 var SOCIAL_COLUMN_WRAPPER = "umd-footer-social-column_wrapper";
@@ -116,6 +117,29 @@ var ElementStyles = `
   .${ELEMENT_WRAPPER} a {
     color: ${colors.white};
   }
+
+  .${ELEMENT_WRAPPER} a {
+    background-image: linear-gradient(${colors.white}, ${colors.white});
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    display: inline;
+    position: relative;
+    transition: background-size 0.4s;
+  }
+
+  .${ELEMENT_WRAPPER} a:hover,
+  .${ELEMENT_WRAPPER} a:focus {
+    background-size: 100% 1px;
+  }
+
+  .${ELEMENT_WRAPPER} a.${LOGO_CONTAINER}, 
+  .${ELEMENT_WRAPPER} .${SOCIAL_COLUMN_WRAPPER} > a, 
+  .${ELEMENT_WRAPPER} .${SOCIAL_CONTAINER_WRAPPER} a {
+    background-size: 0;
+  }
+
+  
 `;
 var MainContainerStyles = `
   .${MAIN_CONTAINER} {
@@ -134,6 +158,7 @@ var MainContainerStyles = `
   .${LOGO_CONTAINER} {
     max-width: 310px;
     align-self: flex-start;
+    background-size: 0;
   }
   
   .${LOGO_CONTAINER} svg {
@@ -143,9 +168,42 @@ var MainContainerStyles = `
   .${CONTACT_CONTAINER} {
     padding-left: ${spacing["2xl"]};
   }
+
+  .${CONTACT_CONTAINER} p {
+    line-height: 1.2em;
+  }
   
-  .${CONTACT_CONTAINER} * {
-    color: ${colors.white};
+  .${CONTACT_CONTAINER} span {
+    display: block;
+  }
+
+  .${CONTACT_CONTAINER} .umd-interactive-sans-medium {
+    margin-bottom: ${spacing.min};
+  }
+
+  .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} {
+    display: flex;
+    margin-top: ${spacing.min};
+  }
+
+  .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} a:not(:first-child) {
+    position: relative;
+    margin-left: ${spacing.min};
+    padding-left: ${spacing.min};
+    position: relative;
+    background-position: 10px 100%;
+  }
+
+  .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} a:not(:first-child) > span {
+    content: '';
+    display: inline-block;
+    height: 3px;
+    width: 3px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
   }
 
   .${SOCIAL_CONTAINER} {
@@ -217,22 +275,6 @@ var SubLinkStyles = `
   
   .${UTILITY_CONTAINER} .umd-lock p {
     color: ${colors.white};
-  }
-  
-  .${UTILITY_CONTAINER} a {
-    color: ${colors.white};
-    background-image: linear-gradient(${colors.white}, ${colors.white});
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 1px;
-    display: inline;
-    position: relative;
-    transition: background-size .4s;
-  }
-  
-  .${UTILITY_CONTAINER} a:hover,
-  .${UTILITY_CONTAINER} a:focus {
-    background-size: 100% 1px;
   }
 `;
 var VariationVisualStyles = `
@@ -378,14 +420,14 @@ var CreateLinksLogoRow = /* @__PURE__ */ __name(({ element }) => {
   container.appendChild(wrapper);
   return container;
 }, "CreateLinksLogoRow");
-var CreateCamaignRow = /* @__PURE__ */ __name(() => {
+var CreateCampaignRow = /* @__PURE__ */ __name(() => {
   const container = document.createElement("a");
   container.href = "https://fearlesslyforward.umd.edu";
   container.setAttribute("target", "_blank");
   container.setAttribute("rel", "noopener noreferrer");
   container.innerHTML = CAMPAIGN_LOGO;
   return container;
-}, "CreateCamaignRow");
+}, "CreateCampaignRow");
 var CreateSocialRow = /* @__PURE__ */ __name(({ element }) => {
   const socialLinks = Array.from(element.querySelectorAll(`[slot="${SLOT_SOCIAL_NAME}"] a`));
   const container = document.createElement("div");
@@ -426,7 +468,7 @@ var CreateSocialRow = /* @__PURE__ */ __name(({ element }) => {
 var CreateSocialCampaignColumns = /* @__PURE__ */ __name(({ element }) => {
   const socialColumnWrapper = document.createElement("div");
   const socialContainer = CreateSocialRow({ element });
-  const campaignContainer = CreateCamaignRow();
+  const campaignContainer = CreateCampaignRow();
   socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
   socialColumnWrapper.appendChild(socialContainer);
   socialColumnWrapper.appendChild(campaignContainer);
@@ -451,10 +493,54 @@ var CreateMainLogoRow = /* @__PURE__ */ __name(({ type, theme, element }) => {
     wrapper.appendChild(logoLink);
   }, "makeLogo");
   const makeContact = /* @__PURE__ */ __name(() => {
+    const contactNode = element.querySelector(`[slot="${SLOT_CONTACT_NAME}"]`);
     const contactContainer = document.createElement("div");
-    const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
+    const hasChildren = contactNode ? contactNode.children.length > 0 : false;
     contactContainer.classList.add(CONTACT_CONTAINER);
-    contactContainer.appendChild(contactSlot);
+    const makeLink = /* @__PURE__ */ __name(({ url, title }) => {
+      const link = document.createElement("a");
+      const span = document.createElement("span");
+      link.setAttribute("href", url);
+      link.setAttribute("target", "_blank");
+      link.setAttribute("rel", "noopener noreferrer");
+      link.innerText = title;
+      link.appendChild(span);
+      return link;
+    }, "makeLink");
+    const makeSpan = /* @__PURE__ */ __name(({ text }) => {
+      const span = document.createElement("span");
+      span.innerHTML = text;
+      return span;
+    }, "makeSpan");
+    const makeContactSlot = /* @__PURE__ */ __name(() => {
+      const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
+      contactContainer.appendChild(contactSlot);
+    }, "makeContactSlot");
+    const makeDefaultSlot = /* @__PURE__ */ __name(() => {
+      const defaultContactWrapper = document.createElement("div");
+      const headline = document.createElement("p");
+      const address = document.createElement("address");
+      const addressParagraph = document.createElement("p");
+      const contactList = document.createElement("p");
+      const headlineLink = makeLink({
+        url: "https://www.usmd.edu/",
+        title: "The Flagship Institution of the State of Maryland"
+      });
+      headline.classList.add("umd-interactive-sans-medium");
+      headline.appendChild(headlineLink);
+      addressParagraph.appendChild(makeSpan({ text: "Office of Marketing and Communications" }));
+      addressParagraph.appendChild(makeSpan({ text: "2101 Turner Hall" }));
+      addressParagraph.appendChild(makeSpan({ text: "College Park, MD 20742" }));
+      contactList.classList.add(CONTACT_LIST_CONTAINER);
+      contactList.appendChild(makeLink({ url: "mailto:omc@umd.edu", title: "omc@umd.edu" }));
+      contactList.appendChild(makeLink({ url: "tel:3014051000", title: "301.405.1000" }));
+      address.appendChild(addressParagraph);
+      address.appendChild(contactList);
+      contactContainer.appendChild(headline);
+      contactContainer.appendChild(address);
+      contactContainer.appendChild(defaultContactWrapper);
+    }, "makeDefaultSlot");
+    hasChildren ? makeContactSlot() : makeDefaultSlot();
     wrapper.appendChild(contactContainer);
   }, "makeContact");
   const makeThirdColumn = /* @__PURE__ */ __name(() => {

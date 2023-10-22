@@ -23,6 +23,7 @@ const MAIN_BOTTOM_CONTAINER = 'umd-footer-main-bottom-container';
 const MAIN_TOP_CONTAINER_WRAPPER = 'umd-footer-main-top-container-wrapper';
 const LOGO_CONTAINER = 'umd-footer-logo-container';
 const CONTACT_CONTAINER = 'umd-footer-contact-container';
+const CONTACT_LIST_CONTAINER = 'umd-footer-contact-contact-list';
 const SOCIAL_CONTAINER = 'umd-footer-social-container';
 const SOCIAL_CONTAINER_WRAPPER = 'umd-footer-social-container_wrapper';
 const SOCIAL_COLUMN_WRAPPER = 'umd-footer-social-column_wrapper';
@@ -54,6 +55,29 @@ const ElementStyles = `
   .${ELEMENT_WRAPPER} a {
     color: ${colors.white};
   }
+
+  .${ELEMENT_WRAPPER} a {
+    background-image: linear-gradient(${colors.white}, ${colors.white});
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    display: inline;
+    position: relative;
+    transition: background-size 0.4s;
+  }
+
+  .${ELEMENT_WRAPPER} a:hover,
+  .${ELEMENT_WRAPPER} a:focus {
+    background-size: 100% 1px;
+  }
+
+  .${ELEMENT_WRAPPER} a.${LOGO_CONTAINER}, 
+  .${ELEMENT_WRAPPER} .${SOCIAL_COLUMN_WRAPPER} > a, 
+  .${ELEMENT_WRAPPER} .${SOCIAL_CONTAINER_WRAPPER} a {
+    background-size: 0;
+  }
+
+  
 `;
 
 const MainContainerStyles = `
@@ -73,6 +97,7 @@ const MainContainerStyles = `
   .${LOGO_CONTAINER} {
     max-width: 310px;
     align-self: flex-start;
+    background-size: 0;
   }
   
   .${LOGO_CONTAINER} svg {
@@ -82,9 +107,42 @@ const MainContainerStyles = `
   .${CONTACT_CONTAINER} {
     padding-left: ${spacing['2xl']};
   }
+
+  .${CONTACT_CONTAINER} p {
+    line-height: 1.2em;
+  }
   
-  .${CONTACT_CONTAINER} * {
-    color: ${colors.white};
+  .${CONTACT_CONTAINER} span {
+    display: block;
+  }
+
+  .${CONTACT_CONTAINER} .umd-interactive-sans-medium {
+    margin-bottom: ${spacing.min};
+  }
+
+  .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} {
+    display: flex;
+    margin-top: ${spacing.min};
+  }
+
+  .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} a:not(:first-child) {
+    position: relative;
+    margin-left: ${spacing.min};
+    padding-left: ${spacing.min};
+    position: relative;
+    background-position: 10px 100%;
+  }
+
+  .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} a:not(:first-child) > span {
+    content: '';
+    display: inline-block;
+    height: 3px;
+    width: 3px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
   }
 
   .${SOCIAL_CONTAINER} {
@@ -158,22 +216,6 @@ const SubLinkStyles = `
   
   .${UTILITY_CONTAINER} .umd-lock p {
     color: ${colors.white};
-  }
-  
-  .${UTILITY_CONTAINER} a {
-    color: ${colors.white};
-    background-image: linear-gradient(${colors.white}, ${colors.white});
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 1px;
-    display: inline;
-    position: relative;
-    transition: background-size .4s;
-  }
-  
-  .${UTILITY_CONTAINER} a:hover,
-  .${UTILITY_CONTAINER} a:focus {
-    background-size: 100% 1px;
   }
 `;
 
@@ -349,7 +391,7 @@ const CreateLinksLogoRow = ({ element }: { element: HTMLElement }) => {
   return container;
 };
 
-const CreateCamaignRow = () => {
+const CreateCampaignRow = () => {
   const container = document.createElement('a');
   container.href = 'https://fearlesslyforward.umd.edu';
   container.setAttribute('target', '_blank');
@@ -421,7 +463,7 @@ const CreateSocialRow = ({ element }: { element: HTMLElement }) => {
 const CreateSocialCampaignColumns = ({ element }: { element: HTMLElement }) => {
   const socialColumnWrapper = document.createElement('div');
   const socialContainer = CreateSocialRow({ element });
-  const campaignContainer = CreateCamaignRow();
+  const campaignContainer = CreateCampaignRow();
 
   socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
 
@@ -465,11 +507,76 @@ const CreateMainLogoRow = ({
   };
 
   const makeContact = () => {
+    const contactNode = element.querySelector(`[slot="${SLOT_CONTACT_NAME}"]`);
     const contactContainer = document.createElement('div');
-    const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
+    const hasChildren = contactNode ? contactNode.children.length > 0 : false;
 
     contactContainer.classList.add(CONTACT_CONTAINER);
-    contactContainer.appendChild(contactSlot);
+
+    const makeLink = ({ url, title }: { url: string; title: string }) => {
+      const link = document.createElement('a');
+      const span = document.createElement('span');
+      link.setAttribute('href', url);
+      link.setAttribute('target', '_blank');
+      link.setAttribute('rel', 'noopener noreferrer');
+      link.innerText = title;
+      link.appendChild(span);
+      return link;
+    };
+
+    const makeSpan = ({ text }: { text: string }) => {
+      const span = document.createElement('span');
+      span.innerHTML = text;
+
+      return span;
+    };
+
+    const makeContactSlot = () => {
+      const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
+      contactContainer.appendChild(contactSlot);
+    };
+
+    const makeDefaultSlot = () => {
+      const defaultContactWrapper = document.createElement('div');
+      const headline = document.createElement('p');
+      const address = document.createElement('address');
+      const addressParagraph = document.createElement('p');
+      const contactList = document.createElement('p');
+
+      const headlineLink = makeLink({
+        url: 'https://www.usmd.edu/',
+        title: 'The Flagship Institution of the State of Maryland',
+      });
+
+      headline.classList.add('umd-interactive-sans-medium');
+      headline.appendChild(headlineLink);
+
+      addressParagraph.appendChild(
+        makeSpan({ text: 'Office of Marketing and Communications' }),
+      );
+      addressParagraph.appendChild(makeSpan({ text: '2101 Turner Hall' }));
+      addressParagraph.appendChild(
+        makeSpan({ text: 'College Park, MD 20742' }),
+      );
+
+      contactList.classList.add(CONTACT_LIST_CONTAINER);
+      contactList.appendChild(
+        makeLink({ url: 'mailto:omc@umd.edu', title: 'omc@umd.edu' }),
+      );
+      contactList.appendChild(
+        makeLink({ url: 'tel:3014051000', title: '301.405.1000' }),
+      );
+
+      address.appendChild(addressParagraph);
+      address.appendChild(contactList);
+
+      contactContainer.appendChild(headline);
+      contactContainer.appendChild(address);
+      contactContainer.appendChild(defaultContactWrapper);
+    };
+
+    hasChildren ? makeContactSlot() : makeDefaultSlot();
+
     wrapper.appendChild(contactContainer);
   };
 
