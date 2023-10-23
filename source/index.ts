@@ -16,17 +16,6 @@ declare global {
 
 const ELEMENT_NAME = 'umd-element-footer';
 
-// Functions
-
-const Debounce = <T extends Function>(cb: T, wait = 50) => {
-  let h = 0;
-  let callable = (...args: any) => {
-    clearTimeout(h);
-    h = setTimeout(() => cb(...args), wait);
-  };
-  return <T>(<any>callable);
-};
-
 const LoadTemplate = async () => {
   const template = document.createElement('template');
   const resp = await fetch('./styles.css');

@@ -96,31 +96,35 @@ var UtilityContainerStyles = `
   .${UTILITY_CONTAINER} .umd-lock p {
     color: ${colors.white};
   }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} {
+    background-color: ${colors.gray.light};
+  }
 `;
+var requiredSubLinks = [
+  {
+    title: "Privacy Policy",
+    url: "https://www.umd.edu/privacy-notice"
+  },
+  {
+    title: "Web Accessibility",
+    url: "https://www.umd.edu/web-accessibility"
+  }
+];
+var createSubLink = /* @__PURE__ */ __name(({ title, url }) => {
+  const link = document.createElement("a");
+  link.setAttribute("href", url);
+  link.setAttribute("target", "_blank");
+  link.setAttribute("rel", "noopener noreferrer");
+  link.innerText = title;
+  link.classList.add("umd-sans-min");
+  return link;
+}, "createSubLink");
 var CreateUtility = /* @__PURE__ */ __name(({ element }) => {
   const slot = element.querySelector(`[slot="${SLOT_UTILITY_LINKS_NAME}"]`);
   const container = document.createElement("div");
   const wrapper = document.createElement("div");
   const copyRight = document.createElement("p");
-  const requiredSubLinks = [
-    {
-      title: "Privacy Policy",
-      url: "https://www.umd.edu/privacy-notice"
-    },
-    {
-      title: "Web Accessibility",
-      url: "https://www.umd.edu/web-accessibility"
-    }
-  ];
-  const createSubLink = /* @__PURE__ */ __name(({ title, url }) => {
-    const link = document.createElement("a");
-    link.setAttribute("href", url);
-    link.setAttribute("target", "_blank");
-    link.setAttribute("rel", "noopener noreferrer");
-    link.innerText = title;
-    link.classList.add("umd-sans-min");
-    return link;
-  }, "createSubLink");
   container.classList.add(UTILITY_CONTAINER);
   wrapper.classList.add("umd-lock");
   if (slot) {
@@ -219,6 +223,15 @@ var SocialContainerStyles = `
   .${SOCIAL_CONTAINER_WRAPPER} a path {
     max-height: 20px !important;
     fill: ${colors.white} !important;
+  }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"]  .${SOCIAL_CONTAINER_WRAPPER} a {
+    background-color: ${colors.gray.light};
+  }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a > *,
+    .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a path {
+    fill: ${colors.black} !important;
   }
 `;
 var GetSocialIcon = /* @__PURE__ */ __name(({ link }) => {
@@ -396,32 +409,37 @@ var CreateContactContainer = /* @__PURE__ */ __name(({ element }) => {
 }, "CreateContactContainer");
 
 // examples/components/row-logo.js
-var MAIN_TOP_CONTAINER = "umd-footer-main-top-container";
-var MAIN_TOP_CONTAINER_WRAPPER = "umd-footer-main-top-container-wrapper";
-var MainContainerStyles = `
-  .${MAIN_TOP_CONTAINER} {
+var ROW_LOGO_CONTAINER = "umd-footer-main-top-container";
+var ROW_LOGO_CONTAINER_WRAPPER = "umd-footer-main-top-container-wrapper";
+var RowLogoStyles = `
+  .${ROW_LOGO_CONTAINER} {
     background-color: ${colors.black};
     padding: ${spacing["5xl"]} 0 ${spacing["2xl"]} ;
   }
   
-  .${MAIN_TOP_CONTAINER_WRAPPER}  {
+  .${ROW_LOGO_CONTAINER_WRAPPER}  {
     display: flex;
   }
   
   ${LogoContainerStyles}
   ${ContactContainerStyles}
   ${SocialContainerStyles}
+
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${ROW_LOGO_CONTAINER} {
+    background-color: ${colors.gray.lightest};
+  }
 `;
 var CreateCallToActionContainer = /* @__PURE__ */ __name(() => {
   const container = document.createElement("div");
   return container;
 }, "CreateCallToActionContainer");
-var CreateLogoRow = /* @__PURE__ */ __name(({ type, theme, element }) => {
+var CreateRowLogo = /* @__PURE__ */ __name(({ type, theme, element }) => {
   const container = document.createElement("div");
   const lock = document.createElement("div");
   const wrapper = document.createElement("div");
-  container.classList.add(MAIN_TOP_CONTAINER);
-  wrapper.classList.add(MAIN_TOP_CONTAINER_WRAPPER);
+  container.classList.add(ROW_LOGO_CONTAINER);
+  wrapper.classList.add(ROW_LOGO_CONTAINER_WRAPPER);
   lock.classList.add("umd-lock");
   const makeThirdColumn = /* @__PURE__ */ __name(() => {
     const includeSocial = type === VERSION_TYPE_SIMPLE;
@@ -441,35 +459,40 @@ var CreateLogoRow = /* @__PURE__ */ __name(({ type, theme, element }) => {
   lock.appendChild(wrapper);
   container.appendChild(lock);
   return container;
-}, "CreateLogoRow");
+}, "CreateRowLogo");
 
 // examples/components/row-links.js
-var MAIN_BOTTOM_CONTAINER = "umd-footer-main-bottom-container";
-var LinksRowStyles = `
-  .${MAIN_BOTTOM_CONTAINER} {
+var ROW_LINKS_CONTAINER = "umd-footer-main-row-links";
+var RowLinkStyles = `
+  .${ROW_LINKS_CONTAINER} {
     padding: ${spacing["2xl"]} 0;
     background-color: ${colors.black};
   }
+
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${ROW_LINKS_CONTAINER} {
+    background-color: ${colors.gray.lightest};
+  }
 `;
-var CreateLinksLogoRow = /* @__PURE__ */ __name(({ element }) => {
+var CreateRowLinks = /* @__PURE__ */ __name(({ element }) => {
   const container = document.createElement("div");
   const lock = document.createElement("div");
   const wrapper = document.createElement("div");
   const socialColumnWrapper = CreateSocialCampaignColumns({ element });
   lock.classList.add("umd-lock");
-  container.classList.add(MAIN_BOTTOM_CONTAINER);
+  container.classList.add(ROW_LINKS_CONTAINER);
   lock.appendChild(socialColumnWrapper);
   wrapper.appendChild(lock);
   container.appendChild(wrapper);
   return container;
-}, "CreateLinksLogoRow");
+}, "CreateRowLinks");
 
 // examples/components/index.js
 var ELEMENT_WRAPPER = "umd-footer-element-wrapper";
 var SLOT_BACKGROUND_IMAGE_NAME = "background-image";
 var MAIN_CONTAINER = "umd-footer-main-container";
 var BACKGROUND_IMAGE_CONTAINER = "umd-footer-background-image-container";
-var BACKGROUND_IMAGE_GRADIENT = "umd-footer-background-image-graident-container";
+var BACKGROUND_IMAGE_GRADIENT = "umd-footer-background-image-graident";
 var THEME_OPTION_DARK = "dark";
 var THEME_OPTION_LIGHT = "light";
 var VERSION_TYPE_MEGA = "mega";
@@ -506,6 +529,11 @@ var ElementStyles = `
   .${ELEMENT_WRAPPER} .${SOCIAL_CONTAINER_WRAPPER} a {
     background-size: 0;
   }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] p, 
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] a {
+    color: ${colors.gray.darker};
+  }
 `;
 var VariationVisualStyles = `
   .${ELEMENT_WRAPPER}[type="${VERSION_TYPE_VISUAL}"] .${BACKGROUND_IMAGE_CONTAINER}  {
@@ -532,33 +560,6 @@ var VariationVisualStyles = `
     object-position: center;
   }
 `;
-var LightThemeStyles = `
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] p, 
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] a {
-    color: ${colors.gray.darker};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${MAIN_TOP_CONTAINER} {
-    background-color: ${colors.gray.lightest};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${MAIN_BOTTOM_CONTAINER} {
-    background-color: ${colors.gray.lightest};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} {
-    background-color: ${colors.gray.light};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"]  .${SOCIAL_CONTAINER_WRAPPER} a {
-    background-color: ${colors.gray.light};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a > *,
-    .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a path {
-    fill: ${colors.black} !important;
-  }
-`;
 var ComponentStyles = `
   :host {
     display: block !important;
@@ -568,11 +569,11 @@ var ComponentStyles = `
   }
 
   ${ElementStyles}
-  ${MainContainerStyles}
-  ${LinksRowStyles}
+  ${RowLogoStyles}
+  ${RowLinkStyles}
   ${VariationVisualStyles}
   ${UtilityContainerStyles}
-  ${LightThemeStyles}
+
 `;
 var CreateSlot = /* @__PURE__ */ __name(({ type }) => {
   const slot = document.createElement("slot");
@@ -581,7 +582,7 @@ var CreateSlot = /* @__PURE__ */ __name(({ type }) => {
 }, "CreateSlot");
 var CreateMain = /* @__PURE__ */ __name(({ type, theme, element }) => {
   const container = document.createElement("div");
-  const logoRow = CreateLogoRow({ theme, type, element });
+  const logoRow = CreateRowLogo({ theme, type, element });
   container.classList.add(MAIN_CONTAINER);
   if (type === VERSION_TYPE_VISUAL) {
     const slottedDate = element.querySelector(`[slot="${SLOT_BACKGROUND_IMAGE_NAME}"]`);
@@ -610,7 +611,7 @@ var CreateMain = /* @__PURE__ */ __name(({ type, theme, element }) => {
   }
   container.appendChild(logoRow);
   if (type === VERSION_TYPE_MEGA || type === VERSION_TYPE_VISUAL) {
-    const linksRow = CreateLinksLogoRow({ element });
+    const linksRow = CreateRowLinks({ element });
     container.appendChild(linksRow);
   }
   return container;

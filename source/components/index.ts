@@ -1,25 +1,16 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
-import { UtilityContainerStyles, UTILITY_CONTAINER } from './utility';
+import { UtilityContainerStyles } from './utility';
 import { LOGO_CONTAINER } from './logo';
 import { SOCIAL_COLUMN_WRAPPER, SOCIAL_CONTAINER_WRAPPER } from './social';
-import {
-  MainContainerStyles,
-  MAIN_TOP_CONTAINER,
-  CreateLogoRow,
-} from './row-logo';
-import {
-  LinksRowStyles,
-  CreateLinksLogoRow,
-  MAIN_BOTTOM_CONTAINER,
-} from './row-links';
+import { RowLogoStyles, CreateRowLogo } from './row-logo';
+import { RowLinkStyles, CreateRowLinks } from './row-links';
 
 export const ELEMENT_WRAPPER = 'umd-footer-element-wrapper';
 
 const SLOT_BACKGROUND_IMAGE_NAME = 'background-image';
 const MAIN_CONTAINER = 'umd-footer-main-container';
 const BACKGROUND_IMAGE_CONTAINER = 'umd-footer-background-image-container';
-const BACKGROUND_IMAGE_GRADIENT =
-  'umd-footer-background-image-graident-container';
+const BACKGROUND_IMAGE_GRADIENT = 'umd-footer-background-image-graident';
 
 export const THEME_OPTION_DARK = 'dark';
 export const THEME_OPTION_LIGHT = 'light';
@@ -65,6 +56,11 @@ const ElementStyles = `
   .${ELEMENT_WRAPPER} .${SOCIAL_CONTAINER_WRAPPER} a {
     background-size: 0;
   }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] p, 
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] a {
+    color: ${colors.gray.darker};
+  }
 `;
 
 const VariationVisualStyles = `
@@ -93,34 +89,6 @@ const VariationVisualStyles = `
   }
 `;
 
-const LightThemeStyles = `
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] p, 
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] a {
-    color: ${colors.gray.darker};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${MAIN_TOP_CONTAINER} {
-    background-color: ${colors.gray.lightest};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${MAIN_BOTTOM_CONTAINER} {
-    background-color: ${colors.gray.lightest};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} {
-    background-color: ${colors.gray.light};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"]  .${SOCIAL_CONTAINER_WRAPPER} a {
-    background-color: ${colors.gray.light};
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a > *,
-    .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a path {
-    fill: ${colors.black} !important;
-  }
-`;
-
 export const ComponentStyles = `
   :host {
     display: block !important;
@@ -130,11 +98,11 @@ export const ComponentStyles = `
   }
 
   ${ElementStyles}
-  ${MainContainerStyles}
-  ${LinksRowStyles}
+  ${RowLogoStyles}
+  ${RowLinkStyles}
   ${VariationVisualStyles}
   ${UtilityContainerStyles}
-  ${LightThemeStyles}
+
 `;
 
 export const CreateSlot = ({ type }: { type: string }) => {
@@ -153,7 +121,7 @@ export const CreateMain = ({
   element: HTMLElement;
 }) => {
   const container = document.createElement('div');
-  const logoRow = CreateLogoRow({ theme, type, element });
+  const logoRow = CreateRowLogo({ theme, type, element });
 
   container.classList.add(MAIN_CONTAINER);
 
@@ -195,7 +163,7 @@ export const CreateMain = ({
   container.appendChild(logoRow);
 
   if (type === VERSION_TYPE_MEGA || type === VERSION_TYPE_VISUAL) {
-    const linksRow = CreateLinksLogoRow({ element });
+    const linksRow = CreateRowLinks({ element });
     container.appendChild(linksRow);
   }
 

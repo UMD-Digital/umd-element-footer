@@ -1,5 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
+import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from './index';
 import { CAMPAIGN_LOGO, FACEBOOK_ICON, X_ICON, INSTAGRAM_ICON, YOUTUBE_ICON, TWITTER_ICON, } from '../svgs';
 const SLOT_SOCIAL_NAME = 'social-links';
 export const SOCIAL_CONTAINER = 'umd-footer-social-container';
@@ -48,6 +49,15 @@ export const SocialContainerStyles = `
   .${SOCIAL_CONTAINER_WRAPPER} a path {
     max-height: 20px !important;
     fill: ${colors.white} !important;
+  }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"]  .${SOCIAL_CONTAINER_WRAPPER} a {
+    background-color: ${colors.gray.light};
+  }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a > *,
+    .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a path {
+    fill: ${colors.black} !important;
   }
 `;
 const GetSocialIcon = ({ link }) => {

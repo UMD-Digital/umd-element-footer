@@ -1,20 +1,26 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
 import { CreateSocialCampaignColumns } from './social';
-export const MAIN_BOTTOM_CONTAINER = 'umd-footer-main-bottom-container';
-export const LinksRowStyles = `
-  .${MAIN_BOTTOM_CONTAINER} {
+import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from './index';
+export const ROW_LINKS_CONTAINER = 'umd-footer-main-row-links';
+export const RowLinkStyles = `
+  .${ROW_LINKS_CONTAINER} {
     padding: ${spacing['2xl']} 0;
     background-color: ${colors.black};
   }
+
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${ROW_LINKS_CONTAINER} {
+    background-color: ${colors.gray.lightest};
+  }
 `;
-export const CreateLinksLogoRow = ({ element }) => {
+export const CreateRowLinks = ({ element }) => {
     const container = document.createElement('div');
     const lock = document.createElement('div');
     const wrapper = document.createElement('div');
     const socialColumnWrapper = CreateSocialCampaignColumns({ element });
     lock.classList.add('umd-lock');
-    container.classList.add(MAIN_BOTTOM_CONTAINER);
+    container.classList.add(ROW_LINKS_CONTAINER);
     lock.appendChild(socialColumnWrapper);
     wrapper.appendChild(lock);
     container.appendChild(wrapper);

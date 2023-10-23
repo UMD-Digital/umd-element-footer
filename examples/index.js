@@ -1,14 +1,6 @@
 import { CreateMain, ComponentStyles, ELEMENT_WRAPPER, THEME_OPTION_DARK, VERSION_TYPE_SIMPLE, VERSION_TYPES, } from './components';
 import { CreateUtility } from './components/utility';
 const ELEMENT_NAME = 'umd-element-footer';
-const Debounce = (cb, wait = 50) => {
-    let h = 0;
-    let callable = (...args) => {
-        clearTimeout(h);
-        h = setTimeout(() => cb(...args), wait);
-    };
-    return callable;
-};
 const LoadTemplate = async () => {
     const template = document.createElement('template');
     const resp = await fetch('./styles.css');
