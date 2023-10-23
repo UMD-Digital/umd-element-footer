@@ -1,6 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from './index';
+import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
 import { CAMPAIGN_LOGO, FACEBOOK_ICON, X_ICON, INSTAGRAM_ICON, YOUTUBE_ICON, TWITTER_ICON, } from '../svgs';
 const SLOT_SOCIAL_NAME = 'social-links';
 export const SOCIAL_CONTAINER = 'umd-footer-social-container';

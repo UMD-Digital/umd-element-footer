@@ -8,11 +8,11 @@ import {
   ELEMENT_WRAPPER,
   THEME_OPTION_LIGHT,
   VERSION_TYPE_SIMPLE,
-} from './index';
+} from '../variables';
 
-export const ROW_LOGO_CONTAINER = 'umd-footer-main-top-container';
+export const ROW_LOGO_CONTAINER = 'umd-footer-row-logo-container';
 export const ROW_LOGO_CONTAINER_WRAPPER =
-  'umd-footer-main-top-container-wrapper';
+  'umd-footer-row-logo-container-wrapper';
 
 export const RowLogoStyles = `
   .${ROW_LOGO_CONTAINER} {
@@ -30,7 +30,7 @@ export const RowLogoStyles = `
 
 
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${ROW_LOGO_CONTAINER} {
-    background-color: ${colors.gray.lightest};
+    background-color: ${colors.gray.lightest} !important;
   }
 `;
 

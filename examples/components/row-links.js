@@ -1,7 +1,7 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
 import { CreateSocialCampaignColumns } from './social';
-import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from './index';
+import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
 export const ROW_LINKS_CONTAINER = 'umd-footer-main-row-links';
 export const RowLinkStyles = `
   .${ROW_LINKS_CONTAINER} {

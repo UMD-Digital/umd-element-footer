@@ -1,5 +1,5 @@
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { CreateSlot } from './index';
+import { CreateSlot } from '../helpers';
 const SLOT_CONTACT_NAME = 'contact';
 const CONTACT_CONTAINER = 'umd-footer-contact-container';
 const CONTACT_LIST_CONTAINER = 'umd-footer-contact-contact-list';

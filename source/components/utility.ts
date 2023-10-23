@@ -1,6 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from './index';
+import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
 
 const SLOT_UTILITY_LINKS_NAME = 'utility-links';
 export const UTILITY_CONTAINER = 'umd-footer-utility-container';
@@ -28,6 +28,11 @@ export const UtilityContainerStyles = `
 
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} {
     background-color: ${colors.gray.light};
+  }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} a,
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} p {
+    color: ${colors.black};
   }
 `;
 
