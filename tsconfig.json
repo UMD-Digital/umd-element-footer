@@ -12,6 +12,6 @@
     "removeComments": true,
     "forceConsistentCasingInFileNames": true,
     "rootDir": "source",
-    "outDir": "examples"
+    "outDir": "build"
   }
 }
