@@ -24,6 +24,14 @@ export const SocialContainerStyles = `
     align-self: flex-start;
     padding-left: ${spacing['2xl']};
   }
+
+  .${SOCIAL_CONTAINER} > p {
+    align-self: flex-start;
+  }
+
+  .${SOCIAL_COLUMN_WRAPPER} {
+    margin-left: auto;
+  }
   
   .${SOCIAL_COLUMN_WRAPPER} > a {
     display: flex;
@@ -32,7 +40,7 @@ export const SocialContainerStyles = `
     max-width: 250px;
     margin-left: auto;
   }
-  
+
   .${SOCIAL_CONTAINER_WRAPPER} {
     display: grid;
     grid-gap: ${spacing.xs};

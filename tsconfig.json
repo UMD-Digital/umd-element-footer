@@ -13,5 +13,8 @@
     "forceConsistentCasingInFileNames": true,
     "rootDir": "source",
     "outDir": "build"
-  }
+  },
+  "include": [
+    "source/**/*"
+],
 }

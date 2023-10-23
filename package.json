@@ -16,8 +16,10 @@
     "bundle:build": "esbuild --watch --bundle build/index.js --keep-names --outfile=build/bundle.js --format=esm",
     "styles:dist": "tailwindcss --minify -i ./source/index.css -o ./dist/styles.css",
     "styles:build": "tailwindcss --watch -i ./source/index.css -o ./build/styles.css",
+    "html:buid": "cp -R source/*.html build & cp -R source/assets/* build",
+    "html:watch": "nodemon --watch source/index.html -x \"npm run html:buid\"",
     "dist": "tsc && npm run styles:dist && npm run bundle:dist && cp source/assets/* dist",
-    "build": "mkdir build & cp -R source/*.html build & cp -R source/assets/* build",
+    "build": "mkdir build & npm run html:watch",
     "start": "npm run build & tsc -w & npm run bundle:build & npm run styles:build"
   },
   "devDependencies": {
@@ -29,6 +31,7 @@
     "typescript": "^5.2.2"
   },
   "dependencies": {
-    "@universityofmaryland/design-system-configuration": "^0.0.9"
+    "@universityofmaryland/design-system-configuration": "^0.0.9",
+    "nodemon": "^3.0.1"
   }
 }

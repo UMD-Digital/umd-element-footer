@@ -96,7 +96,7 @@ export const CreateMain = ({
     const backgroundGraident = document.createElement('div');
     const backgroundImage = document.createElement('img');
     let altText = 'The University of Maryland Campus';
-    let imageSrc = `./background.jpg`;
+    let imageSrc = `./default.jpg`;
 
     if (slottedDate) {
       const source = slottedDate.getAttribute('src');
