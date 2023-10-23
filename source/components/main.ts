@@ -31,17 +31,6 @@ export const ElementStyles = `
     transition: background-size 0.4s;
   }
 
-  .${ELEMENT_WRAPPER} a:hover,
-  .${ELEMENT_WRAPPER} a:focus {
-    background-size: 100% 1px;
-  }
-
-  .${ELEMENT_WRAPPER} a.${LOGO_CONTAINER}, 
-  .${ELEMENT_WRAPPER} .${SOCIAL_COLUMN_WRAPPER} > a, 
-  .${ELEMENT_WRAPPER} .${SOCIAL_CONTAINER_WRAPPER} a {
-    background-size: 0;
-  }
-
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] p, 
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] a {
     color: ${colors.gray.darker}

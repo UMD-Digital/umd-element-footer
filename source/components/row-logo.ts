@@ -5,6 +5,10 @@ import { ContactContainerStyles, CreateContactContainer } from './contact';
 import { SocialContainerStyles, CreateSocialCampaignColumns } from './social';
 import { LogoContainerStyles, CreateLogoContainer } from './logo';
 import {
+  CallToActionStyles,
+  CreateCallToActionContainer,
+} from './call-to-action';
+import {
   ELEMENT_WRAPPER,
   THEME_OPTION_LIGHT,
   VERSION_TYPE_SIMPLE,
@@ -27,18 +31,12 @@ export const RowLogoStyles = `
   ${LogoContainerStyles}
   ${ContactContainerStyles}
   ${SocialContainerStyles}
-
+  ${CallToActionStyles}
 
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${ROW_LOGO_CONTAINER} {
     background-color: ${colors.gray.lightest} !important;
   }
 `;
-
-const CreateCallToActionContainer = () => {
-  const container = document.createElement('div');
-
-  return container;
-};
 
 export const CreateRowLogo = ({
   type,
@@ -64,7 +62,7 @@ export const CreateRowLogo = ({
       const socialColumnWrapper = CreateSocialCampaignColumns({ element });
       wrapper.appendChild(socialColumnWrapper);
     } else {
-      const ctaWrapper = CreateCallToActionContainer();
+      const ctaWrapper = CreateCallToActionContainer({ element });
       wrapper.appendChild(ctaWrapper);
     }
   };

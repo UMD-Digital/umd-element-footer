@@ -14,7 +14,12 @@ export const UtilityContainerStyles = `
   .${UTILITY_CONTAINER} .umd-lock {
     display: flex;
   }
-  
+
+  .${UTILITY_CONTAINER} a:hover,
+  .${UTILITY_CONTAINER} a:focus {
+    background-size: 100% 1px;
+  }
+
   .${UTILITY_CONTAINER} .umd-lock > *:not(:first-child) {
     margin-left: ${spacing.sm};
     padding-left: ${spacing.sm};

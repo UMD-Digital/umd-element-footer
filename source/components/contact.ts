@@ -9,9 +9,18 @@ export const ContactContainerStyles = `
   .${CONTACT_CONTAINER} {
     padding-left: ${spacing['2xl']};
   }
+
+  .${CONTACT_CONTAINER} a:hover,
+  .${CONTACT_CONTAINER} a:focus {
+    background-size: 100% 1px;
+  }
   
   .${CONTACT_CONTAINER} p {
     line-height: 1.2em;
+  }
+
+  .${CONTACT_CONTAINER} address {
+    font-style: normal;
   }
   
   .${CONTACT_CONTAINER} span {

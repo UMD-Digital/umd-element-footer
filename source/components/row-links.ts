@@ -7,7 +7,7 @@ export const ROW_LINKS_CONTAINER = 'umd-footer-main-row-links';
 
 export const RowLinkStyles = `
   .${ROW_LINKS_CONTAINER} {
-    padding: ${spacing['2xl']} 0;
+    padding-bottom: ${spacing['2xl']};
     background-color: ${colors.black};
   }
 
