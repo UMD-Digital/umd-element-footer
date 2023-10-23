@@ -1,0 +1,74 @@
+import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
+import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
+
+const SLOT_UTILITY_LINKS_NAME = 'utility-links';
+export const UTILITY_CONTAINER = 'umd-footer-utility-container';
+
+export const UtilityContainerStyles = `
+  .${UTILITY_CONTAINER} {
+    padding: ${spacing.sm} 0;
+    background-color: ${colors.gray.darker};
+  }
+  
+  .${UTILITY_CONTAINER} .umd-lock {
+    display: flex;
+  }
+  
+  .${UTILITY_CONTAINER} .umd-lock > *:not(:first-child) {
+    margin-left: ${spacing.sm};
+    padding-left: ${spacing.sm};
+    background-position: ${spacing.sm} 100%;
+    border-left: 1px solid ${colors.gray.dark};
+  }
+  
+  .${UTILITY_CONTAINER} .umd-lock p {
+    color: ${colors.white};
+  }
+`;
+
+// Utility Row
+
+export const CreateUtility = ({ element }: { element: HTMLElement }) => {
+  const slot = element.querySelector(`[slot="${SLOT_UTILITY_LINKS_NAME}"]`);
+  const container = document.createElement('div');
+  const wrapper = document.createElement('div');
+  const copyRight = document.createElement('p');
+  const requiredSubLinks = [
+    {
+      title: 'Privacy Policy',
+      url: 'https://www.umd.edu/privacy-notice',
+    },
+    {
+      title: 'Web Accessibility',
+      url: 'https://www.umd.edu/web-accessibility',
+    },
+  ];
+  const createSubLink = ({ title, url }: { title: string; url: string }) => {
+    const link = document.createElement('a');
+    link.setAttribute('href', url);
+    link.setAttribute('target', '_blank');
+    link.setAttribute('rel', 'noopener noreferrer');
+    link.innerText = title;
+    link.classList.add('umd-sans-min');
+    return link;
+  };
+
+  container.classList.add(UTILITY_CONTAINER);
+  wrapper.classList.add('umd-lock');
+
+  if (slot) {
+    const slottedLinks = Array.from(
+      slot.querySelectorAll(`a`),
+    ) as HTMLAnchorElement[];
+
+    slottedLinks.forEach((link) => link.classList.add('umd-sans-min'));
+    slottedLinks.forEach((link) => wrapper.appendChild(link));
+  }
+  requiredSubLinks.forEach((link) => wrapper.appendChild(createSubLink(link)));
+  copyRight.classList.add('umd-sans-min');
+  copyRight.innerHTML = `©${new Date().getFullYear()} UNIVERSITY OF MARYLAND`;
+  wrapper.appendChild(copyRight);
+  container.appendChild(wrapper);
+
+  return container;
+};

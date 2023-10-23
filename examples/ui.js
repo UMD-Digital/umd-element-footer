@@ -395,6 +395,75 @@ const CreateSocialCampaignColumns = ({ element }) => {
     socialColumnWrapper.appendChild(campaignContainer);
     return socialColumnWrapper;
 };
+const CreateLogoContainer = ({ theme }) => {
+    const logoLink = document.createElement('a');
+    const logoElmement = document.createElement('div');
+    logoLink.classList.add(LOGO_CONTAINER);
+    logoLink.setAttribute('href', 'https://umd.edu');
+    logoLink.setAttribute('target', '_blank');
+    logoLink.setAttribute('rel', 'noopener noreferrer');
+    logoElmement.innerHTML =
+        theme === THEME_OPTION_LIGHT ? `${LIGHT_LOGO}` : `${DARK_LOGO}`;
+    logoLink.appendChild(logoElmement);
+    return logoLink;
+};
+const CreateContactContainer = ({ element }) => {
+    const contactNode = element.querySelector(`[slot="${SLOT_CONTACT_NAME}"]`);
+    const contactContainer = document.createElement('div');
+    const hasChildren = contactNode ? contactNode.children.length > 0 : false;
+    contactContainer.classList.add(CONTACT_CONTAINER);
+    const makeLink = ({ url, title }) => {
+        const link = document.createElement('a');
+        const span = document.createElement('span');
+        link.setAttribute('href', url);
+        link.setAttribute('target', '_blank');
+        link.setAttribute('rel', 'noopener noreferrer');
+        link.innerText = title;
+        link.appendChild(span);
+        return link;
+    };
+    const makeSpan = ({ text }) => {
+        const span = document.createElement('span');
+        span.innerHTML = text;
+        return span;
+    };
+    const makeContactSlot = () => {
+        const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
+        contactContainer.appendChild(contactSlot);
+    };
+    const makeDefaultSlot = () => {
+        const defaultContactWrapper = document.createElement('div');
+        const headline = document.createElement('p');
+        const address = document.createElement('address');
+        const addressParagraph = document.createElement('p');
+        const contactList = document.createElement('p');
+        const headlineLink = makeLink({
+            url: 'https://www.usmd.edu/',
+            title: 'The Flagship Institution of the State of Maryland',
+        });
+        headline.classList.add('umd-interactive-sans-medium');
+        headline.appendChild(headlineLink);
+        addressParagraph.appendChild(makeSpan({ text: 'Office of Marketing and Communications' }));
+        addressParagraph.appendChild(makeSpan({ text: '2101 Turner Hall' }));
+        addressParagraph.appendChild(makeSpan({ text: 'College Park, MD 20742' }));
+        contactList.classList.add(CONTACT_LIST_CONTAINER);
+        contactList.appendChild(makeLink({ url: 'mailto:omc@umd.edu', title: 'omc@umd.edu' }));
+        contactList.appendChild(makeLink({ url: 'tel:3014051000', title: '301.405.1000' }));
+        address.appendChild(addressParagraph);
+        address.appendChild(contactList);
+        contactContainer.appendChild(headline);
+        contactContainer.appendChild(address);
+        contactContainer.appendChild(defaultContactWrapper);
+    };
+    hasChildren ? makeContactSlot() : makeDefaultSlot();
+    return contactContainer;
+};
+const CreateCallToActionContainer = () => {
+    const container = document.createElement('div');
+    To;
+    Do;
+    return container;
+};
 const CreateMainLogoRow = ({ type, theme, element, }) => {
     const container = document.createElement('div');
     const lock = document.createElement('div');
@@ -402,78 +471,21 @@ const CreateMainLogoRow = ({ type, theme, element, }) => {
     container.classList.add(MAIN_TOP_CONTAINER);
     wrapper.classList.add(MAIN_TOP_CONTAINER_WRAPPER);
     lock.classList.add('umd-lock');
-    const makeLogo = () => {
-        const logoLink = document.createElement('a');
-        const logoElmement = document.createElement('div');
-        logoLink.classList.add(LOGO_CONTAINER);
-        logoLink.setAttribute('href', 'https://umd.edu');
-        logoLink.setAttribute('target', '_blank');
-        logoLink.setAttribute('rel', 'noopener noreferrer');
-        logoElmement.innerHTML =
-            theme === THEME_OPTION_LIGHT ? `${LIGHT_LOGO}` : `${DARK_LOGO}`;
-        logoLink.appendChild(logoElmement);
-        wrapper.appendChild(logoLink);
-    };
-    const makeContact = () => {
-        const contactNode = element.querySelector(`[slot="${SLOT_CONTACT_NAME}"]`);
-        const contactContainer = document.createElement('div');
-        const hasChildren = contactNode ? contactNode.children.length > 0 : false;
-        contactContainer.classList.add(CONTACT_CONTAINER);
-        const makeLink = ({ url, title }) => {
-            const link = document.createElement('a');
-            const span = document.createElement('span');
-            link.setAttribute('href', url);
-            link.setAttribute('target', '_blank');
-            link.setAttribute('rel', 'noopener noreferrer');
-            link.innerText = title;
-            link.appendChild(span);
-            return link;
-        };
-        const makeSpan = ({ text }) => {
-            const span = document.createElement('span');
-            span.innerHTML = text;
-            return span;
-        };
-        const makeContactSlot = () => {
-            const contactSlot = CreateSlot({ type: SLOT_CONTACT_NAME });
-            contactContainer.appendChild(contactSlot);
-        };
-        const makeDefaultSlot = () => {
-            const defaultContactWrapper = document.createElement('div');
-            const headline = document.createElement('p');
-            const address = document.createElement('address');
-            const addressParagraph = document.createElement('p');
-            const contactList = document.createElement('p');
-            const headlineLink = makeLink({
-                url: 'https://www.usmd.edu/',
-                title: 'The Flagship Institution of the State of Maryland',
-            });
-            headline.classList.add('umd-interactive-sans-medium');
-            headline.appendChild(headlineLink);
-            addressParagraph.appendChild(makeSpan({ text: 'Office of Marketing and Communications' }));
-            addressParagraph.appendChild(makeSpan({ text: '2101 Turner Hall' }));
-            addressParagraph.appendChild(makeSpan({ text: 'College Park, MD 20742' }));
-            contactList.classList.add(CONTACT_LIST_CONTAINER);
-            contactList.appendChild(makeLink({ url: 'mailto:omc@umd.edu', title: 'omc@umd.edu' }));
-            contactList.appendChild(makeLink({ url: 'tel:3014051000', title: '301.405.1000' }));
-            address.appendChild(addressParagraph);
-            address.appendChild(contactList);
-            contactContainer.appendChild(headline);
-            contactContainer.appendChild(address);
-            contactContainer.appendChild(defaultContactWrapper);
-        };
-        hasChildren ? makeContactSlot() : makeDefaultSlot();
-        wrapper.appendChild(contactContainer);
-    };
     const makeThirdColumn = () => {
         const includeSocial = type === VERSION_TYPE_SIMPLE;
         if (includeSocial) {
             const socialColumnWrapper = CreateSocialCampaignColumns({ element });
             wrapper.appendChild(socialColumnWrapper);
         }
+        else {
+            const ctaWrapper = CreateCallToActionContainer();
+            wrapper.appendChild(ctaWrapper);
+        }
     };
-    makeLogo();
-    makeContact();
+    const logoElement = CreateLogoContainer({ theme });
+    const contactElement = CreateContactContainer({ element });
+    wrapper.appendChild(logoElement);
+    wrapper.appendChild(contactElement);
     makeThirdColumn();
     lock.appendChild(wrapper);
     container.appendChild(lock);

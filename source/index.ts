@@ -1,12 +1,12 @@
 import {
   CreateMain,
-  CreateUtility,
   ComponentStyles,
   ELEMENT_WRAPPER,
   THEME_OPTION_DARK,
   VERSION_TYPE_SIMPLE,
   VERSION_TYPES,
-} from './ui';
+} from './components';
+import { CreateUtility } from './components/utility';
 
 declare global {
   interface Window {
