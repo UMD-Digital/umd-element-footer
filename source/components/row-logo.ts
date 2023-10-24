@@ -59,7 +59,10 @@ export const CreateRowLogo = ({
     const includeSocial = type === VERSION_TYPE_SIMPLE;
 
     if (includeSocial) {
-      const socialColumnWrapper = CreateSocialCampaignColumns({ element });
+      const socialColumnWrapper = CreateSocialCampaignColumns({
+        element,
+        theme,
+      });
       wrapper.appendChild(socialColumnWrapper);
     } else {
       const ctaWrapper = CreateCallToActionContainer({ element });

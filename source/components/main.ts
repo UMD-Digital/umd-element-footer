@@ -115,7 +115,7 @@ export const CreateMain = ({
   container.appendChild(logoRow);
 
   if (type === VERSION_TYPE_MEGA || type === VERSION_TYPE_VISUAL) {
-    const linksRow = CreateRowLinks({ element });
+    const linksRow = CreateRowLinks({ element, theme });
     container.appendChild(linksRow);
   }
 

@@ -11,17 +11,22 @@ export const RowLinkStyles = `
     background-color: ${colors.black};
   }
 
-
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${ROW_LINKS_CONTAINER} {
     background-color: ${colors.gray.lightest};
   }
 `;
 
-export const CreateRowLinks = ({ element }: { element: HTMLElement }) => {
+export const CreateRowLinks = ({
+  element,
+  theme,
+}: {
+  element: HTMLElement;
+  theme: string;
+}) => {
   const container = document.createElement('div');
   const lock = document.createElement('div');
   const wrapper = document.createElement('div');
-  const socialColumnWrapper = CreateSocialCampaignColumns({ element });
+  const socialColumnWrapper = CreateSocialCampaignColumns({ element, theme });
 
   lock.classList.add('umd-lock');
   container.classList.add(ROW_LINKS_CONTAINER);

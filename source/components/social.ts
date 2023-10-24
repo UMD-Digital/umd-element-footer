@@ -3,6 +3,7 @@ import { spacing } from '@universityofmaryland/design-system-configuration/dist/
 import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
 import {
   CAMPAIGN_LOGO,
+  CAMPAIGN_LOGO_DARK,
   FACEBOOK_ICON,
   X_ICON,
   INSTAGRAM_ICON,
@@ -165,25 +166,28 @@ const CreateSocialRow = ({ element }: { element: HTMLElement }) => {
   return container;
 };
 
-const CreateCampaignRow = () => {
+const CreateCampaignRow = ({ theme }: { theme: string }) => {
   const container = document.createElement('a');
   container.href = 'https://fearlesslyforward.umd.edu';
   container.setAttribute('target', '_blank');
   container.setAttribute('rel', 'noopener noreferrer');
 
-  container.innerHTML = CAMPAIGN_LOGO;
+  container.innerHTML =
+    theme === THEME_OPTION_LIGHT ? CAMPAIGN_LOGO_DARK : CAMPAIGN_LOGO;
 
   return container;
 };
 
 export const CreateSocialCampaignColumns = ({
   element,
+  theme,
 }: {
   element: HTMLElement;
+  theme: string;
 }) => {
   const socialColumnWrapper = document.createElement('div');
   const socialContainer = CreateSocialRow({ element });
-  const campaignContainer = CreateCampaignRow();
+  const campaignContainer = CreateCampaignRow({ theme });
 
   socialColumnWrapper.classList.add(SOCIAL_COLUMN_WRAPPER);
 
