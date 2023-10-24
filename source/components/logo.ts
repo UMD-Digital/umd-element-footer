@@ -8,6 +8,7 @@ export const LogoContainerStyles = `
     max-width: 310px;
     align-self: flex-start;
     background-size: 0;
+    display: block !important;
   }
   
   .${LOGO_CONTAINER} svg {

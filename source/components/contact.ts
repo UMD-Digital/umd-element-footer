@@ -1,13 +1,23 @@
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
 import { CreateSlot } from '../helpers';
+import { BREAKPOINTS } from '../variables';
 
 const SLOT_CONTACT_NAME = 'contact';
 const CONTACT_CONTAINER = 'umd-footer-contact-container';
 const CONTACT_LIST_CONTAINER = 'umd-footer-contact-contact-list';
 
 export const ContactContainerStyles = `
-  .${CONTACT_CONTAINER} {
-    padding-left: ${spacing['2xl']};
+
+  @container umd-footer (max-width: ${BREAKPOINTS.large - 1}px) {
+    .${CONTACT_CONTAINER} {
+      padding: ${spacing['md']} 0;
+    }
+  }
+
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${CONTACT_CONTAINER} {
+      padding-left: ${spacing['2xl']};
+    }
   }
 
   .${CONTACT_CONTAINER} a:hover,

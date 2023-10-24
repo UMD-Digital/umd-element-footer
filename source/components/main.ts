@@ -26,7 +26,7 @@ export const ElementStyles = `
     background-position: 0 100%;
     background-repeat: no-repeat;
     background-size: 0 1px;
-    display: inline;
+    display: inline-block;
     position: relative;
     transition: background-size 0.4s;
   }

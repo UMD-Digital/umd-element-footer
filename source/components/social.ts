@@ -1,6 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
+import { BREAKPOINTS, ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
 import {
   CAMPAIGN_LOGO,
   CAMPAIGN_LOGO_DARK,
@@ -21,25 +21,38 @@ export const SocialContainerStyles = `
     margin-left: auto;
     display: flex;
     align-items: center;
-    justify-content: flex-end;
     align-self: flex-start;
-    padding-left: ${spacing['2xl']};
+  }
+
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${SOCIAL_CONTAINER} {
+      justify-content: flex-end;
+      padding-left: ${spacing['2xl']};
+    }
   }
 
   .${SOCIAL_CONTAINER} > p {
     align-self: flex-start;
   }
 
-  .${SOCIAL_COLUMN_WRAPPER} {
-    margin-left: auto;
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${SOCIAL_COLUMN_WRAPPER} {
+      margin-left: auto;
+    }
   }
   
   .${SOCIAL_COLUMN_WRAPPER} > a {
-    display: flex;
-    justify-content: flex-end;
+    display: block;
     margin-top: ${spacing.lg};
     max-width: 250px;
-    margin-left: auto;
+  }
+
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${SOCIAL_COLUMN_WRAPPER} > a {
+      display: flex;
+      justify-content: flex-end;
+      margin-left: auto;
+    }
   }
 
   .${SOCIAL_CONTAINER_WRAPPER} {
@@ -74,7 +87,7 @@ export const SocialContainerStyles = `
   }
 
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a > *,
-    .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a path {
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${SOCIAL_CONTAINER_WRAPPER} a path {
     fill: ${colors.black} !important;
   }
 `;

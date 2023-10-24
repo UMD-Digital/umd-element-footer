@@ -1,5 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
+import { BREAKPOINTS } from '../variables';
 
 const LINK_TYPE = 'link';
 const HEADLINE_TYPE = 'headline';
@@ -104,8 +105,17 @@ const COLUMN_THREE_DEFAULT_LINKS = [
 ];
 
 export const LinkColumnStyles = `
-  .${ROW_LINKS_COLUMNS_CONTAINER} {
-    display: flex;
+
+  @container umd-footer (max-width: ${BREAKPOINTS.large - 1}px) {
+    .${ROW_LINKS_COLUMNS_CONTAINER} {
+      padding-top: ${spacing.md};
+    }
+  }
+
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${ROW_LINKS_COLUMNS_CONTAINER} {
+      display: flex;
+    }
   }
 
   .${ROW_LINKS_COLUMNS_CONTAINER} a:hover,
@@ -113,15 +123,26 @@ export const LinkColumnStyles = `
     background-size: 100% 1px;
   }
 
-  .${ROW_LINKS_COLUMN_WRAPPER} {
-    padding-right: ${spacing.xs};
+  @container umd-footer (max-width: ${BREAKPOINTS.large - 1}px) {
+    .${ROW_LINKS_COLUMN_WRAPPER}:not(:last-child) {
+      margin-bottom: ${spacing.lg};
+    }
   }
 
-  .${ROW_LINKS_COLUMN_WRAPPER}:not(:first-child) {
-    margin-left: ${spacing.lg};
-    padding-left: ${spacing.lg};
-    border-left: 1px solid ${colors.gray.dark};
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${ROW_LINKS_COLUMN_WRAPPER} {
+      padding-right: ${spacing.xs};
+    }
   }
+
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${ROW_LINKS_COLUMN_WRAPPER}:not(:first-child) {
+      margin-left: ${spacing.lg};
+      padding-left: ${spacing.lg};
+      border-left: 1px solid ${colors.gray.dark};
+    }
+  }
+
 
   .${ROW_LINKS_COLUMN_WRAPPER} > div {
 

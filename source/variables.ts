@@ -11,3 +11,9 @@ export const VERSION_TYPES = [
   VERSION_TYPE_MEGA,
   VERSION_TYPE_VISUAL,
 ];
+
+export const BREAKPOINTS = {
+  small: 280,
+  medium: 650,
+  large: 1000,
+};

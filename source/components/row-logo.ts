@@ -9,6 +9,7 @@ import {
   CreateCallToActionContainer,
 } from './call-to-action';
 import {
+  BREAKPOINTS,
   ELEMENT_WRAPPER,
   THEME_OPTION_LIGHT,
   VERSION_TYPE_SIMPLE,
@@ -21,11 +22,14 @@ export const ROW_LOGO_CONTAINER_WRAPPER =
 export const RowLogoStyles = `
   .${ROW_LOGO_CONTAINER} {
     background-color: ${colors.black};
-    padding: ${spacing['5xl']} 0 ${spacing['2xl']} ;
+    padding: ${spacing['2xl']} 0 ${spacing['md']} ;
   }
   
-  .${ROW_LOGO_CONTAINER_WRAPPER}  {
-    display: flex;
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${ROW_LOGO_CONTAINER_WRAPPER}  {
+      display: flex;
+      padding: ${spacing['5xl']} 0 ${spacing['2xl']};
+    }
   }
   
   ${LogoContainerStyles}

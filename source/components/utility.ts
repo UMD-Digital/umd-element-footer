@@ -1,6 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
+import { BREAKPOINTS, ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
 
 const SLOT_UTILITY_LINKS_NAME = 'utility-links';
 export const UTILITY_CONTAINER = 'umd-footer-utility-container';
@@ -11,8 +11,16 @@ export const UtilityContainerStyles = `
     background-color: ${colors.gray.darker};
   }
   
-  .${UTILITY_CONTAINER} .umd-lock {
-    display: flex;
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${UTILITY_CONTAINER} .umd-lock {
+      display: flex;
+    }
+  }
+
+  @container umd-footer (max-width: ${BREAKPOINTS.large - 1}px) {
+    .${UTILITY_CONTAINER} .umd-lock > *:not(:first-child) {
+      margin-top: ${spacing.sm};
+    }
   }
 
   .${UTILITY_CONTAINER} a:hover,
@@ -20,15 +28,19 @@ export const UtilityContainerStyles = `
     background-size: 100% 1px;
   }
 
-  .${UTILITY_CONTAINER} .umd-lock > *:not(:first-child) {
-    margin-left: ${spacing.sm};
-    padding-left: ${spacing.sm};
-    background-position: ${spacing.sm} 100%;
-    border-left: 1px solid ${colors.gray.dark};
+  @container umd-footer (min-width: ${BREAKPOINTS.large}px) {
+    .${UTILITY_CONTAINER} .umd-lock > *:not(:first-child) {
+      margin-left: ${spacing.sm};
+      padding-left: ${spacing.sm};
+      background-position: ${spacing.sm} 100%;
+      border-left: 1px solid ${colors.gray.dark};
+    }
   }
   
   .${UTILITY_CONTAINER} .umd-lock p {
     color: ${colors.white};
+    display: flex;
+    align-items: center;
   }
 
   .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] .${UTILITY_CONTAINER} {
@@ -53,13 +65,16 @@ const requiredSubLinks = [
 ];
 
 const createSubLink = ({ title, url }: { title: string; url: string }) => {
+  const wrapper = document.createElement('div');
   const link = document.createElement('a');
   link.setAttribute('href', url);
   link.setAttribute('target', '_blank');
   link.setAttribute('rel', 'noopener noreferrer');
   link.innerText = title;
   link.classList.add('umd-sans-min');
-  return link;
+
+  wrapper.appendChild(link);
+  return wrapper;
 };
 
 export const CreateUtility = ({ element }: { element: HTMLElement }) => {
@@ -76,8 +91,13 @@ export const CreateUtility = ({ element }: { element: HTMLElement }) => {
       slot.querySelectorAll(`a`),
     ) as HTMLAnchorElement[];
 
-    slottedLinks.forEach((link) => link.classList.add('umd-sans-min'));
-    slottedLinks.forEach((link) => wrapper.appendChild(link));
+    slottedLinks.forEach((link) => {
+      const divWrapper = document.createElement('div');
+
+      link.classList.add('umd-sans-min');
+      divWrapper.appendChild(link);
+      wrapper.appendChild(divWrapper);
+    });
   }
   requiredSubLinks.forEach((link) => wrapper.appendChild(createSubLink(link)));
   copyRight.classList.add('umd-sans-min');
