@@ -15,12 +15,16 @@ declare global {
 }
 
 const ELEMENT_NAME = 'umd-element-footer';
+const STYLE_FILE_CDN =
+  'https://unpkg.com/@universityofmaryland/umd-element-footer/dist/styles.css';
 
 const LoadTemplate = async () => {
   const template = document.createElement('template');
-  const resp = await fetch(
-    'https://raw.githubusercontent.com/UMD-Digital/umd-element-footer/main/dist/styles.css',
-  );
+  const resp = await fetch(STYLE_FILE_CDN).catch((err) => {
+    throw new Error(
+      `UMDFooterElement: Failed to load style file from CDN. ${err}`,
+    );
+  });
   const configCss = await resp.text();
 
   template.innerHTML = `<style>${configCss}${ComponentStyles}</style>`;
