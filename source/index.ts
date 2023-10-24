@@ -18,7 +18,9 @@ const ELEMENT_NAME = 'umd-element-footer';
 
 const LoadTemplate = async () => {
   const template = document.createElement('template');
-  const resp = await fetch('./styles.css');
+  const resp = await fetch(
+    'https://raw.githubusercontent.com/UMD-Digital/umd-element-footer/main/dist/styles.css',
+  );
   const configCss = await resp.text();
 
   template.innerHTML = `<style>${configCss}${ComponentStyles}</style>`;

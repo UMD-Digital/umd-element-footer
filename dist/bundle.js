@@ -189,7 +189,7 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
   .${U} svg {
     width: 100%;
   }
-`,r1=a(({theme:i})=>{let A=document.createElement("a"),t=document.createElement("div");return A.classList.add(U),A.setAttribute("href","https://umd.edu"),A.setAttribute("target","_blank"),A.setAttribute("rel","noopener noreferrer"),t.innerHTML=i===M?`${_}`:`${$}`,A.appendChild(t),A},"CreateLogoContainer");var B1="call-to-action",J="umd-footer-call-to-action-container",s1=`
+`,r1=a(({theme:i})=>{let A=document.createElement("a"),t=document.createElement("div");return A.classList.add(U),A.setAttribute("href","https://umd.edu"),A.setAttribute("target","_blank"),A.setAttribute("rel","noopener noreferrer"),t.innerHTML=i===M?`${_}`:`${$}`,A.appendChild(t),A},"CreateLogoContainer");var w1="call-to-action",J="umd-footer-call-to-action-container",s1=`
   .${J} {
     margin-left: auto;
   }
@@ -204,7 +204,7 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
   .${J} a:focus {
     background-size: none;
   }
-`,M1=a(({element:i})=>{let A=document.createElement("div"),t=i.querySelector(`[slot="${B1}"]`);if(A.classList.add(J),t)A.appendChild(t);else{let l=document.createElement("a");l.textContent="Support UMD",l.href="https://giving.umd.edu/",l.target="_blank",l.rel="noopener noreferrer",A.appendChild(l)}return A},"CreateCallToActionContainer");var k="umd-footer-row-logo-container",E1="umd-footer-row-logo-container-wrapper",C1=`
+`,M1=a(({element:i})=>{let A=document.createElement("div"),t=i.querySelector(`[slot="${w1}"]`);if(A.classList.add(J),t)A.appendChild(t);else{let l=document.createElement("a");l.textContent="Support UMD",l.href="https://giving.umd.edu/",l.target="_blank",l.rel="noopener noreferrer",A.appendChild(l)}return A},"CreateCallToActionContainer");var k="umd-footer-row-logo-container",E1="umd-footer-row-logo-container-wrapper",C1=`
   .${k} {
     background-color: ${n.black};
     padding: ${c["2xl"]} 0 ${c.md} ;
@@ -225,7 +225,7 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
   .${r}[theme="${M}"] .${k} {
     background-color: ${n.gray.lightest} !important;
   }
-`,Z1=a(({type:i,theme:A,element:t})=>{let l=document.createElement("div"),e=document.createElement("div"),m=document.createElement("div");l.classList.add(k),m.classList.add(E1),e.classList.add("umd-lock");let s=a(()=>{if(i===x){let T=b({element:t,theme:A});m.appendChild(T)}else{let T=M1({element:t});m.appendChild(T)}},"makeThirdColumn"),E=r1({theme:A}),C=F({element:t});return m.appendChild(E),m.appendChild(C),s(),e.appendChild(m),l.appendChild(e),l},"CreateRowLogo");var Z="link",K="headline",g="umd-footer-row-links-columns",y="umd-footer-row-links-column-wrapper",w1="link-column-one",O1="link-column-two",Q1="link-column-three",S1=[{elmentType:Z,title:"Careers",url:"https://ejobs.umd.edu"},{elmentType:Z,title:"Office of Civil Rights & Sexual Misconduct",url:"https://ocrsm.umd.edu"},{elmentType:Z,title:"UMD Police Department",url:"https://www.umpd.umd.edu"},{elmentType:Z,title:"Public Records Request",url:"https://umd.edu/administration/public-information-request"},{elmentType:Z,title:"Report Fraud and Waste",url:"https://finance.umd.edu/ethics-integrity-and-compliance-reporting"},{elmentType:Z,title:"Policies and Procedures",url:"https://umd.edu/policies-and-procedures"}],q1=[{elmentType:K,title:"Information for"},{elmentType:Z,title:"Prospective Undergraduate Students",url:"https://admissions.umd.edu/"},{elmentType:Z,title:"Prospective Graduate Students",url:"https://gradschool.umd.edu/"},{elmentType:Z,title:"Parents & Families",url:"https://admissions.umd.edu/persona/parent-families"},{elmentType:Z,title:"Alumni",url:"https://alumni.umd.edu/"}],f1=[{elmentType:K,title:"Academics"},{elmentType:Z,title:"Academic Calendars",url:"https://provost.umd.edu/node/3876"},{elmentType:Z,title:"Course Catalogs",url:"https://academiccatalog.umd.edu"},{elmentType:Z,title:"Libraries",url:"https://www.lib.umd.edu"},{elmentType:Z,title:"Terp Portals",url:"https://testudo.umd.edu"}],p1=`
+`,Z1=a(({type:i,theme:A,element:t})=>{let l=document.createElement("div"),e=document.createElement("div"),m=document.createElement("div");l.classList.add(k),m.classList.add(E1),e.classList.add("umd-lock");let s=a(()=>{if(i===x){let T=b({element:t,theme:A});m.appendChild(T)}else{let T=M1({element:t});m.appendChild(T)}},"makeThirdColumn"),E=r1({theme:A}),C=F({element:t});return m.appendChild(E),m.appendChild(C),s(),e.appendChild(m),l.appendChild(e),l},"CreateRowLogo");var Z="link",K="headline",g="umd-footer-row-links-columns",y="umd-footer-row-links-column-wrapper",B1="link-column-one",O1="link-column-two",Q1="link-column-three",S1=[{elmentType:Z,title:"Careers",url:"https://ejobs.umd.edu"},{elmentType:Z,title:"Office of Civil Rights & Sexual Misconduct",url:"https://ocrsm.umd.edu"},{elmentType:Z,title:"UMD Police Department",url:"https://www.umpd.umd.edu"},{elmentType:Z,title:"Public Records Request",url:"https://umd.edu/administration/public-information-request"},{elmentType:Z,title:"Report Fraud and Waste",url:"https://finance.umd.edu/ethics-integrity-and-compliance-reporting"},{elmentType:Z,title:"Policies and Procedures",url:"https://umd.edu/policies-and-procedures"}],q1=[{elmentType:K,title:"Information for"},{elmentType:Z,title:"Prospective Undergraduate Students",url:"https://admissions.umd.edu/"},{elmentType:Z,title:"Prospective Graduate Students",url:"https://gradschool.umd.edu/"},{elmentType:Z,title:"Parents & Families",url:"https://admissions.umd.edu/persona/parent-families"},{elmentType:Z,title:"Alumni",url:"https://alumni.umd.edu/"}],f1=[{elmentType:K,title:"Academics"},{elmentType:Z,title:"Academic Calendars",url:"https://provost.umd.edu/node/3876"},{elmentType:Z,title:"Course Catalogs",url:"https://academiccatalog.umd.edu"},{elmentType:Z,title:"Libraries",url:"https://www.lib.umd.edu"},{elmentType:Z,title:"Terp Portals",url:"https://testudo.umd.edu"}],p1=`
 
   @container umd-footer (max-width: ${o.large-1}px) {
     .${g} {
@@ -272,19 +272,19 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
   .${y} > div:not(:last-child) {
     margin-bottom: ${c.sm};
   }
-`,V=a(({slotElement:i,defaultContent:A})=>{let t=document.createElement("div");return t.classList.add(y),i?t.appendChild(i):A&&A.forEach(l=>{if(l.elmentType===Z){if(l.url){let e=document.createElement("div"),m=document.createElement("a");m.textContent=l.title,m.href=l.url,m.classList.add("umd-sans-smaller"),m.target="_blank",m.rel="noopener noreferrer",e.appendChild(m),t.appendChild(e)}}else if(l.elmentType===K){let e=document.createElement("div"),m=document.createElement("p");m.textContent=l.title,m.classList.add("umd-interactive-sans-medium"),e.appendChild(m),t.appendChild(e)}}),t},"CreateColumn"),d1=a(({element:i})=>{let A=document.createElement("div"),t=i.querySelector(`[slot="${w1}"]`),l=i.querySelector(`[slot="${O1}"]`),e=i.querySelector(`[slot="${Q1}"]`);return t||l||e?(t&&A.appendChild(V({slotElement:t})),l&&A.appendChild(V({slotElement:l})),e&&A.appendChild(V({slotElement:e}))):(A.appendChild(V({defaultContent:S1})),A.appendChild(V({defaultContent:q1})),A.appendChild(V({defaultContent:f1}))),A.classList.add(g),A},"CreateLinkColumns");var B="umd-footer-row-links",N="umd-footer-row-links-wrapper",T1=`
-  .${B} {
+`,V=a(({slotElement:i,defaultContent:A})=>{let t=document.createElement("div");return t.classList.add(y),i?t.appendChild(i):A&&A.forEach(l=>{if(l.elmentType===Z){if(l.url){let e=document.createElement("div"),m=document.createElement("a");m.textContent=l.title,m.href=l.url,m.classList.add("umd-sans-smaller"),m.target="_blank",m.rel="noopener noreferrer",e.appendChild(m),t.appendChild(e)}}else if(l.elmentType===K){let e=document.createElement("div"),m=document.createElement("p");m.textContent=l.title,m.classList.add("umd-interactive-sans-medium"),e.appendChild(m),t.appendChild(e)}}),t},"CreateColumn"),d1=a(({element:i})=>{let A=document.createElement("div"),t=i.querySelector(`[slot="${B1}"]`),l=i.querySelector(`[slot="${O1}"]`),e=i.querySelector(`[slot="${Q1}"]`);return t||l||e?(t&&A.appendChild(V({slotElement:t})),l&&A.appendChild(V({slotElement:l})),e&&A.appendChild(V({slotElement:e}))):(A.appendChild(V({defaultContent:S1})),A.appendChild(V({defaultContent:q1})),A.appendChild(V({defaultContent:f1}))),A.classList.add(g),A},"CreateLinkColumns");var w="umd-footer-row-links",N="umd-footer-row-links-wrapper",T1=`
+  .${w} {
     padding-bottom: ${c.md};
     background-color: ${n.black};
   }
 
   @container umd-footer (min-width: ${o.large}px) {
-    .${B}  {
+    .${w}  {
       padding-bottom: ${c["2xl"]};
     }
   }
 
-  .${r}[theme="${M}"] .${B} {
+  .${r}[theme="${M}"] .${w} {
     background-color: ${n.gray.lightest};
   }
 
@@ -300,7 +300,7 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
   }
 
   ${p1}
-`,z1=a(({element:i,theme:A})=>{let t=document.createElement("div"),l=document.createElement("div"),e=document.createElement("div"),m=b({element:i,theme:A}),s=d1({element:i});return l.classList.add("umd-lock"),t.classList.add(B),e.classList.add(N),e.appendChild(s),e.appendChild(m),l.appendChild(e),t.appendChild(l),t},"CreateRowLinks");var U1="background-image",k1="umd-footer-main-container",w="umd-footer-background-image-container",L1="umd-footer-background-image-graident",h1=`
+`,z1=a(({element:i,theme:A})=>{let t=document.createElement("div"),l=document.createElement("div"),e=document.createElement("div"),m=b({element:i,theme:A}),s=d1({element:i});return l.classList.add("umd-lock"),t.classList.add(w),e.classList.add(N),e.appendChild(s),e.appendChild(m),l.appendChild(e),t.appendChild(l),t},"CreateRowLinks");var U1="background-image",k1="umd-footer-main-container",B="umd-footer-background-image-container",L1="umd-footer-background-image-graident",h1=`
   .${r} p,
   .${r} a {
     color: ${n.white};
@@ -321,11 +321,11 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
     color: ${n.gray.darker}
   }
 `,V1=`
-  .${r}[type="${W}"] .${w}  {
+  .${r}[type="${W}"] .${B}  {
     padding-top: 100px;
   }
 
-  .${w} {
+  .${B} {
     position: relative;
   }
   
@@ -339,13 +339,13 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
     background: linear-gradient( 180deg, rgba(255, 255, 255, 1) 0%, #e4edf9 100% );
   }
 
-  .${w} img {
+  .${B} img {
     width: 100% !important;
     object-fit: cover !important;
     display: block !important;
     object-position: center;
   }
-`,y1=a(({type:i,theme:A,element:t})=>{let l=document.createElement("div"),e=Z1({theme:A,type:i,element:t});if(l.classList.add(k1),i===W){let m=t.querySelector(`[slot="${U1}"]`),s=document.createElement("div"),E=document.createElement("div"),C=document.createElement("img"),h="The University of Maryland Campus",T=a1;if(m){let I=m.getAttribute("src"),O=m.getAttribute("alt");typeof I=="string"&&I.length>0&&(T=I),typeof O=="string"&&O.length>0&&(h=O)}s.classList.add(w),C.setAttribute("src",T),C.setAttribute("alt",`${h}`),E.classList.add(L1),s.appendChild(E),s.appendChild(C),l.appendChild(s)}if(l.appendChild(e),i===Q||i===W){let m=z1({element:t,theme:A});l.appendChild(m)}return l},"CreateMain");var I1=`
+`,y1=a(({type:i,theme:A,element:t})=>{let l=document.createElement("div"),e=Z1({theme:A,type:i,element:t});if(l.classList.add(k1),i===W){let m=t.querySelector(`[slot="${U1}"]`),s=document.createElement("div"),E=document.createElement("div"),C=document.createElement("img"),h="The University of Maryland Campus",T=a1;if(m){let I=m.getAttribute("src"),O=m.getAttribute("alt");typeof I=="string"&&I.length>0&&(T=I),typeof O=="string"&&O.length>0&&(h=O)}s.classList.add(B),C.setAttribute("src",T),C.setAttribute("alt",`${h}`),E.classList.add(L1),s.appendChild(E),s.appendChild(C),l.appendChild(s)}if(l.appendChild(e),i===Q||i===W){let m=z1({element:t,theme:A});l.appendChild(m)}return l},"CreateMain");var I1=`
   :host {
     display: block !important;
     position: relative !important;
@@ -358,4 +358,4 @@ var x1=Object.defineProperty;var a=(i,A)=>x1(i,"name",{value:A,configurable:!0})
   ${T1}
   ${V1}
   ${G}
-`;var W1="umd-element-footer",K1=a(async()=>{let i=document.createElement("template");return i.innerHTML=`<style>${I1}</style>`,i},"LoadTemplate"),u=class extends HTMLElement{static{a(this,"UMDFooterElement")}constructor(){super(),this._shadow=this.attachShadow({mode:"open"}),a(async()=>{let t=await K1();this._shadow.appendChild(t.content.cloneNode(!0))},"load")()}static get observedAttributes(){return["type","theme"]}attributeChangedCallback(A,t,l){}connectedCallback(){let A=this,t=this.getAttribute("type")||x,l=this.getAttribute("theme")||j;if(S.indexOf(t)===-1){let E=`UMDFooterElement: Invalid type attribute. Must be one of ${S.join(",")}. Refer to documenation for more information.`;throw new Error(E)}let e=document.createElement("div"),m=P({element:A}),s=y1({element:A,type:t,theme:l});e.classList.add(r),e.setAttribute("theme",l),e.setAttribute("type",t),e.appendChild(s),e.appendChild(m),this._shadow.appendChild(e)}};window.customElements.get(W1)||(window.UMDFooterElement=u,window.customElements.define(W1,u));export{u as default};
+`;var W1="umd-element-footer",K1=a(async()=>{let i=document.createElement("template"),t=await(await fetch("https://raw.githubusercontent.com/UMD-Digital/umd-element-footer/main/dist/styles.css")).text();return i.innerHTML=`<style>${t}${I1}</style>`,i},"LoadTemplate"),u=class extends HTMLElement{static{a(this,"UMDFooterElement")}constructor(){super(),this._shadow=this.attachShadow({mode:"open"}),a(async()=>{let t=await K1();this._shadow.appendChild(t.content.cloneNode(!0))},"load")()}static get observedAttributes(){return["type","theme"]}attributeChangedCallback(A,t,l){}connectedCallback(){let A=this,t=this.getAttribute("type")||x,l=this.getAttribute("theme")||j;if(S.indexOf(t)===-1){let E=`UMDFooterElement: Invalid type attribute. Must be one of ${S.join(",")}. Refer to documenation for more information.`;throw new Error(E)}let e=document.createElement("div"),m=P({element:A}),s=y1({element:A,type:t,theme:l});e.classList.add(r),e.setAttribute("theme",l),e.setAttribute("type",t),e.appendChild(s),e.appendChild(m),this._shadow.appendChild(e)}};window.customElements.get(W1)||(window.UMDFooterElement=u,window.customElements.define(W1,u));export{u as default};

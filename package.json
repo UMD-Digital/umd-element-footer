@@ -1,6 +1,6 @@
 {
   "name": "@universityofmaryland/umd-element-footer",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "description": "UMD Footer Component",
   "main": "dist/bundle.js",
   "module": "dist/index.js",
