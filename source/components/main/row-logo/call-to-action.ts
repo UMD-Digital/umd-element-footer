@@ -21,6 +21,16 @@ export const CallToActionStyles = `
   }
 `;
 
+const makeGivingLink = () => {
+  const defaultLink = document.createElement('a');
+  defaultLink.textContent = 'Support UMD';
+  defaultLink.href = 'https://giving.umd.edu/';
+  defaultLink.target = '_blank';
+  defaultLink.rel = 'noopener noreferrer';
+
+  return defaultLink;
+};
+
 export const CreateCallToActionContainer = ({
   element,
 }: {
@@ -36,12 +46,7 @@ export const CreateCallToActionContainer = ({
   if (ctaSlot) {
     container.appendChild(ctaSlot);
   } else {
-    const defaultLink = document.createElement('a');
-    defaultLink.textContent = 'Support UMD';
-    defaultLink.href = 'https://giving.umd.edu/';
-    defaultLink.target = '_blank';
-    defaultLink.rel = 'noopener noreferrer';
-    container.appendChild(defaultLink);
+    container.appendChild(makeGivingLink());
   }
 
   return container;

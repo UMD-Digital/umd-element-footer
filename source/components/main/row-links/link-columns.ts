@@ -1,6 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { BREAKPOINTS } from '../variables';
+import { BREAKPOINTS } from '../../../variables';
 
 const LINK_TYPE = 'link';
 const HEADLINE_TYPE = 'headline';
@@ -11,8 +11,8 @@ type ColumnRow = {
   url?: string;
 };
 
-export const ROW_LINKS_COLUMNS_CONTAINER = 'umd-footer-row-links-columns';
-export const ROW_LINKS_COLUMN_WRAPPER = 'umd-footer-row-links-column-wrapper';
+const ROW_LINKS_COLUMNS_CONTAINER = 'umd-footer-row-links-columns';
+const ROW_LINKS_COLUMN_WRAPPER = 'umd-footer-row-links-column-wrapper';
 const SLOT_COLUMN_ONE_NAME = 'link-column-one';
 const SLOT_COLUMN_TWO_NAME = 'link-column-two';
 const SLOT_COLUMN_THREE_NAME = 'link-column-three';

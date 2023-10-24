@@ -1,6 +1,10 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { BREAKPOINTS, ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
+import {
+  BREAKPOINTS,
+  ELEMENT_WRAPPER,
+  THEME_OPTION_LIGHT,
+} from '../../variables';
 import {
   CAMPAIGN_LOGO,
   CAMPAIGN_LOGO_DARK,
@@ -9,12 +13,12 @@ import {
   INSTAGRAM_ICON,
   YOUTUBE_ICON,
   TWITTER_ICON,
-} from '../assets';
+} from '../../assets';
 
 const SLOT_SOCIAL_NAME = 'social-links';
-export const SOCIAL_CONTAINER = 'umd-footer-social-container';
-export const SOCIAL_CONTAINER_WRAPPER = 'umd-footer-social-container_wrapper';
-export const SOCIAL_COLUMN_WRAPPER = 'umd-footer-social-column_wrapper';
+const SOCIAL_CONTAINER = 'umd-footer-social-container';
+const SOCIAL_CONTAINER_WRAPPER = 'umd-footer-social-container_wrapper';
+const SOCIAL_COLUMN_WRAPPER = 'umd-footer-social-column_wrapper';
 
 export const SocialContainerStyles = `
   .${SOCIAL_CONTAINER} {

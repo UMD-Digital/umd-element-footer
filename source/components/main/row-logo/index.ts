@@ -2,7 +2,7 @@ import { colors } from '@universityofmaryland/design-system-configuration/dist/c
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
 
 import { ContactContainerStyles, CreateContactContainer } from './contact';
-import { SocialContainerStyles, CreateSocialCampaignColumns } from './social';
+import { SocialContainerStyles, CreateSocialCampaignColumns } from '../social';
 import { LogoContainerStyles, CreateLogoContainer } from './logo';
 import {
   CallToActionStyles,
@@ -13,11 +13,10 @@ import {
   ELEMENT_WRAPPER,
   THEME_OPTION_LIGHT,
   VERSION_TYPE_SIMPLE,
-} from '../variables';
+} from '../../../variables';
 
-export const ROW_LOGO_CONTAINER = 'umd-footer-row-logo-container';
-export const ROW_LOGO_CONTAINER_WRAPPER =
-  'umd-footer-row-logo-container-wrapper';
+const ROW_LOGO_CONTAINER = 'umd-footer-row-logo-container';
+const ROW_LOGO_CONTAINER_WRAPPER = 'umd-footer-row-logo-container-wrapper';
 
 export const RowLogoStyles = `
   .${ROW_LOGO_CONTAINER} {

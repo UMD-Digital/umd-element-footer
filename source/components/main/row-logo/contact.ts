@@ -1,13 +1,12 @@
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { CreateSlot } from '../helpers';
-import { BREAKPOINTS } from '../variables';
+import { CreateSlot, MakeSpan } from '../../../helpers';
+import { BREAKPOINTS } from '../../../variables';
 
 const SLOT_CONTACT_NAME = 'contact';
 const CONTACT_CONTAINER = 'umd-footer-contact-container';
 const CONTACT_LIST_CONTAINER = 'umd-footer-contact-contact-list';
 
 export const ContactContainerStyles = `
-
   @container umd-footer (max-width: ${BREAKPOINTS.large - 1}px) {
     .${CONTACT_CONTAINER} {
       padding: ${spacing['md']} 0;
@@ -55,7 +54,6 @@ export const ContactContainerStyles = `
   }
   
   .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} a:not(:first-child) > span {
-    content: '';
     display: inline-block;
     height: 3px;
     width: 3px;
@@ -76,13 +74,6 @@ const makeLink = ({ url, title }: { url: string; title: string }) => {
   link.innerText = title;
   link.appendChild(span);
   return link;
-};
-
-const makeSpan = ({ text }: { text: string }) => {
-  const span = document.createElement('span');
-  span.innerHTML = text;
-
-  return span;
 };
 
 export const CreateContactContainer = ({
@@ -117,10 +108,10 @@ export const CreateContactContainer = ({
     headline.appendChild(headlineLink);
 
     addressParagraph.appendChild(
-      makeSpan({ text: 'Office of Marketing and Communications' }),
+      MakeSpan({ text: 'Office of Marketing and Communications' }),
     );
-    addressParagraph.appendChild(makeSpan({ text: '2101 Turner Hall' }));
-    addressParagraph.appendChild(makeSpan({ text: 'College Park, MD 20742' }));
+    addressParagraph.appendChild(MakeSpan({ text: '2101 Turner Hall' }));
+    addressParagraph.appendChild(MakeSpan({ text: 'College Park, MD 20742' }));
 
     contactList.classList.add(CONTACT_LIST_CONTAINER);
     contactList.appendChild(

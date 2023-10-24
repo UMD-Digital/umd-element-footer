@@ -1,8 +1,5 @@
-import { ComponentStyles } from './components';
-import { CreateMain } from './components/main';
-import { CreateUtility } from './components/utility';
+import { ComponentStyles, CreateElement } from './components';
 import {
-  ELEMENT_WRAPPER,
   THEME_OPTION_DARK,
   VERSION_TYPE_SIMPLE,
   VERSION_TYPES,
@@ -51,16 +48,11 @@ export default class UMDFooterElement extends HTMLElement {
     return ['type', 'theme'];
   }
 
-  attributeChangedCallback(
-    name: string,
-    oldValue: string | null,
-    newValue: string | null,
-  ) {}
-
   connectedCallback() {
     const element = this;
     const type = this.getAttribute('type') || VERSION_TYPE_SIMPLE;
     const theme = this.getAttribute('theme') || THEME_OPTION_DARK;
+    const wrapper = CreateElement({ element, type, theme });
 
     if (VERSION_TYPES.indexOf(type) === -1) {
       const message = `UMDFooterElement: Invalid type attribute. Must be one of ${VERSION_TYPES.join(
@@ -68,20 +60,6 @@ export default class UMDFooterElement extends HTMLElement {
       )}. Refer to documenation for more information.`;
       throw new Error(message);
     }
-
-    const wrapper = document.createElement('div');
-    const utilityElement = CreateUtility({ element });
-    const mainElement = CreateMain({
-      element,
-      type,
-      theme,
-    });
-
-    wrapper.classList.add(ELEMENT_WRAPPER);
-    wrapper.setAttribute('theme', theme);
-    wrapper.setAttribute('type', type);
-    wrapper.appendChild(mainElement);
-    wrapper.appendChild(utilityElement);
 
     this._shadow.appendChild(wrapper);
   }

@@ -1,8 +1,12 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
-import { CreateSocialCampaignColumns } from './social';
+import { CreateSocialCampaignColumns } from '../social';
 import { CreateLinkColumns, LinkColumnStyles } from './link-columns';
-import { BREAKPOINTS, ELEMENT_WRAPPER, THEME_OPTION_LIGHT } from '../variables';
+import {
+  BREAKPOINTS,
+  ELEMENT_WRAPPER,
+  THEME_OPTION_LIGHT,
+} from '../../../variables';
 
 export const ROW_LINKS_CONTAINER = 'umd-footer-row-links';
 export const ROW_LINKS_CONTAINER_WRAPPER = 'umd-footer-row-links-wrapper';

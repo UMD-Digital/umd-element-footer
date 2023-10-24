@@ -1,42 +1,20 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
-import { CreateRowLogo } from './row-logo';
-import { CreateRowLinks } from './row-links';
-import { DEFAULT_VISUAL } from '../assets';
+import { CreateRowLogo, RowLogoStyles } from './row-logo';
+import { CreateRowLinks, RowLinkStyles } from './row-links';
+import { DEFAULT_VISUAL } from '../../assets';
 import {
   ELEMENT_WRAPPER,
   VERSION_TYPE_VISUAL,
   THEME_OPTION_LIGHT,
   VERSION_TYPE_MEGA,
-} from '../variables';
+} from '../../variables';
 
 const SLOT_BACKGROUND_IMAGE_NAME = 'background-image';
 const MAIN_CONTAINER = 'umd-footer-main-container';
 const BACKGROUND_IMAGE_CONTAINER = 'umd-footer-background-image-container';
 const BACKGROUND_IMAGE_GRADIENT = 'umd-footer-background-image-graident';
 
-export const ElementStyles = `
-  .${ELEMENT_WRAPPER} p,
-  .${ELEMENT_WRAPPER} a {
-    color: ${colors.white};
-  }
-
-  .${ELEMENT_WRAPPER} a {
-    background-image: linear-gradient(${colors.white}, ${colors.white});
-    background-position: 0 100%;
-    background-repeat: no-repeat;
-    background-size: 0 1px;
-    display: inline-block;
-    position: relative;
-    transition: background-size 0.4s;
-  }
-
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] p, 
-  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] a {
-    color: ${colors.gray.darker}
-  }
-`;
-
-export const VariationVisualStyles = `
+const VariationVisualStyles = `
   .${ELEMENT_WRAPPER}[type="${VERSION_TYPE_VISUAL}"] .${BACKGROUND_IMAGE_CONTAINER}  {
     padding-top: 100px;
   }
@@ -61,6 +39,32 @@ export const VariationVisualStyles = `
     display: block !important;
     object-position: center;
   }
+`;
+
+export const MainContainerStyles = `
+  .${ELEMENT_WRAPPER} p,
+  .${ELEMENT_WRAPPER} a {
+    color: ${colors.white};
+  }
+
+  .${ELEMENT_WRAPPER} a {
+    background-image: linear-gradient(${colors.white}, ${colors.white});
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    display: inline-block;
+    position: relative;
+    transition: background-size 0.4s;
+  }
+
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] p, 
+  .${ELEMENT_WRAPPER}[theme="${THEME_OPTION_LIGHT}"] a {
+    color: ${colors.gray.darker}
+  }
+
+  ${RowLogoStyles}
+  ${RowLinkStyles}
+  ${VariationVisualStyles}
 `;
 
 export const CreateMain = ({

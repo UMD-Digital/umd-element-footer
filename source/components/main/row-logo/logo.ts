@@ -1,7 +1,7 @@
-import { DARK_LOGO, LIGHT_LOGO } from '../assets';
-import { THEME_OPTION_LIGHT } from '../variables';
+import { DARK_LOGO, LIGHT_LOGO } from '../../../assets';
+import { THEME_OPTION_LIGHT } from '../../../variables';
 
-export const LOGO_CONTAINER = 'umd-footer-logo-container';
+const LOGO_CONTAINER = 'umd-footer-logo-container';
 
 export const LogoContainerStyles = `
   .${LOGO_CONTAINER} {

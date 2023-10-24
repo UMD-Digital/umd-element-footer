@@ -11,7 +11,7 @@
     "dist"
   ],
   "scripts": {
-    "clean": "rm -rf build & rm -rf dist",
+    "clean": "rm -rf dist",
     "bundle:dist": "esbuild --bundle build/index.js --minify --keep-names --outfile=dist/bundle.js --format=esm",
     "bundle:build": "esbuild --watch --bundle build/index.js --keep-names --outfile=build/bundle.js --format=esm",
     "styles:dist": "tailwindcss --minify -i ./source/index.css -o ./dist/styles.css",
