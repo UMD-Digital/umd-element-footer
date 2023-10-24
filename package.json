@@ -1,6 +1,6 @@
 {
   "name": "@universityofmaryland/umd-element-footer",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "UMD Footer Component",
   "main": "dist/bundle.js",
   "module": "dist/index.js",
@@ -18,7 +18,7 @@
     "styles:build": "tailwindcss --watch -i ./source/index.css -o ./build/styles.css",
     "html:buid": "cp -R source/*.html build & cp -R source/assets/* build",
     "html:watch": "nodemon --watch source/index.html -x \"npm run html:buid\"",
-    "dist": "tsc && npm run styles:dist && npm run bundle:dist && cp source/assets/* dist",
+    "dist": "tsc && npm run styles:dist && npm run bundle:dist",
     "build": "mkdir build & npm run html:watch",
     "start": "npm run build & tsc -w & npm run bundle:build & npm run styles:build"
   },

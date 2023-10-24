@@ -9,7 +9,7 @@ import {
   INSTAGRAM_ICON,
   YOUTUBE_ICON,
   TWITTER_ICON,
-} from '../svgs';
+} from '../assets';
 
 const SLOT_SOCIAL_NAME = 'social-links';
 export const SOCIAL_CONTAINER = 'umd-footer-social-container';
