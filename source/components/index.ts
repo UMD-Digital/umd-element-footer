@@ -4,7 +4,7 @@ import { ELEMENT_WRAPPER } from '../variables';
 
 export const ComponentStyles = `
   :host {
-    display: block !important;
+    display: none;
     position: relative !important;
     text-wrap: pretty;
     container: umd-footer / inline-size;

@@ -39,6 +39,7 @@ export default class UMDFooterElement extends HTMLElement {
     const load = async () => {
       const template = await LoadTemplate();
       this._shadow.appendChild(template.content.cloneNode(true));
+      this.style.display = 'block';
     };
 
     load();
