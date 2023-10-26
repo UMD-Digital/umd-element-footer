@@ -30,6 +30,7 @@ export const UtilityContainerStyles = `
   .${UTILITY_CONTAINER} a:hover,
   .${UTILITY_CONTAINER} a:focus {
     background-size: 100% 1px;
+    color: ${colors.white};
   }
 
   @container umd-footer (min-width: ${BREAKPOINTS.large}px) {

@@ -1,3 +1,4 @@
+import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { spacing } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/layout.js';
 import { CreateSlot, MakeSpan } from '../../../helpers';
 import { BREAKPOINTS } from '../../../variables';
@@ -22,6 +23,7 @@ export const ContactContainerStyles = `
   .${CONTACT_CONTAINER} a:hover,
   .${CONTACT_CONTAINER} a:focus {
     background-size: 100% 1px;
+    color: ${colors.white};
   }
   
   .${CONTACT_CONTAINER} p {
@@ -31,6 +33,10 @@ export const ContactContainerStyles = `
   .${CONTACT_CONTAINER} address {
     font-style: normal;
   }
+
+  .${CONTACT_CONTAINER} address * {
+    font-size: 14px;
+  }
   
   .${CONTACT_CONTAINER} span {
     display: block;
@@ -38,6 +44,10 @@ export const ContactContainerStyles = `
   
   .${CONTACT_CONTAINER} .umd-interactive-sans-medium {
     margin-bottom: ${spacing.min};
+  }
+
+  .${CONTACT_CONTAINER} .umd-interactive-sans-medium a {
+    font-weight: 900;
   }
   
   .${CONTACT_CONTAINER} .${CONTACT_LIST_CONTAINER} {

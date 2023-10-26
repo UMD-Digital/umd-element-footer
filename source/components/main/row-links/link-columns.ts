@@ -121,6 +121,11 @@ export const LinkColumnStyles = `
   .${ROW_LINKS_COLUMNS_CONTAINER} a:hover,
   .${ROW_LINKS_COLUMNS_CONTAINER} a:focus {
     background-size: 100% 1px;
+    color: ${colors.white};
+  }
+
+  .${ROW_LINKS_COLUMNS_CONTAINER} .umd-interactive-sans-medium {
+    font-weight: 900;
   }
 
   @container umd-footer (max-width: ${BREAKPOINTS.large - 1}px) {

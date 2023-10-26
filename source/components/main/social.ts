@@ -37,6 +37,7 @@ export const SocialContainerStyles = `
 
   .${SOCIAL_CONTAINER} > p {
     align-self: flex-start;
+    padding-top: 3px;
   }
 
   @container umd-footer (min-width: ${BREAKPOINTS.large}px) {

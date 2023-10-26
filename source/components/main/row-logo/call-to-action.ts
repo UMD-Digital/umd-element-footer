@@ -18,6 +18,7 @@ export const CallToActionStyles = `
   .${CALL_TO_ACTION_CONTAINER} a:hover, 
   .${CALL_TO_ACTION_CONTAINER} a:focus {
     background-size: none;
+    color: ${colors.white};
   }
 `;
 
