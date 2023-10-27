@@ -1,7 +1,6 @@
 import { colors } from '@universityofmaryland/design-system-configuration/dist/configuration/tokens/colors.js';
 import { CreateRowLogo, RowLogoStyles } from './row-logo';
 import { CreateRowLinks, RowLinkStyles } from './row-links';
-import { DEFAULT_VISUAL } from '../../assets';
 import {
   ELEMENT_WRAPPER,
   VERSION_TYPE_VISUAL,
@@ -89,7 +88,8 @@ export const CreateMain = ({
     const backgroundGraident = document.createElement('div');
     const backgroundImage = document.createElement('img');
     let altText = 'The University of Maryland Campus';
-    let imageSrc = DEFAULT_VISUAL;
+    let imageSrc =
+      'https://unpkg.com/@universityofmaryland/umd-element-footer/dist/default.jpg';
 
     if (slottedDate) {
       const source = slottedDate.getAttribute('src');
